@@ -8,6 +8,9 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+// Import Normalize.css to have a consistent starting point
+import "@csstools/normalize.css/normalize"
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

@@ -34,5 +34,8 @@ module WebsiteTemplate
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Setup the supported locales for the project
+    config.i18n.available_locales = [:en]
   end
 end
