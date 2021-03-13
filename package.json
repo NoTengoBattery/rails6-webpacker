@@ -1,18 +1,14 @@
 {
-  "name": "NoTengoBattery",
+  "name": "website-template",
   "private": true,
   "dependencies": {
-    "@csstools/normalize.css": "^11.0",
-    "@fontsource/jetbrains-mono": "^4.2",
-    "@iconify/iconify": "^1.0",
-    "@iconify/icons-emojione": "^1.1",
     "@rails/actioncable": "^6.1",
     "@rails/activestorage": "^6.1",
     "@rails/ujs": "^6.1",
     "@rails/webpacker": "^5.2",
     "turbolinks": "^5.2"
   },
-  "version": "v0.10b",
+  "version": "0.1.0",
   "devDependencies": {
     "stylelint": "^13.12",
     "stylelint-config-sass-guidelines": "^8.0",
