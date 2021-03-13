@@ -11,6 +11,7 @@ AllCops:
   Exclude:
     - ".bundle/**/*"
     - "node_modules/**/*"
+    - "vendor/**/*"
   DisplayCopNames:                true
   NewCops:                        enable
   TargetRubyVersion:              3.0
