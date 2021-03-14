@@ -34,18 +34,20 @@ This template uses Rubocop and Stylelint for enforcing the code style. In the ro
 # General notes
 
 1.  All provided packages are already set up and ready to work and prepared for deployment using either Heroku or Mina. Note that some extra configuration is still needed. Included in this template:
+    -   Mina
     -   Faker
     -   RSpec
     -   Devise
     -   Capybara
     -   Factory Bot
     -   Normalize.css
-    -   Stylelint with the official SASS configuration
-    -   Rubocop with the official Rails configuration and extra enforcements
+    -   Internationalization (thanks to @NoTengoBattery)
+    -   Stylelint with the official SASS configuration (thanks to @NoTengoBattery)
     -   Dart SASS compiler instead of the default `node-sass`, which is severely limited
     -   Disabled `text` and `sprockets` pipelines and replaced to use Webpacker **exclusively**
-    -   Mina deployment to "bare metal" servers such as EC2 instances (it's fixed to work with Puma)
-    -   GitHub Workflows for push, pull request, and releases for linter enforcing and test suite (suitable for CI)
+    -   Rubocop with the official Rails configuration and extra enforcements (thanks to @NoTengoBattery)
+    -   Mina deployment to "bare metal" servers (it's fixed to work with Puma, thanks to @NoTengoBattery)
+    -   GitHub Workflows for linter enforcing and test suite (suitable for CI, thanks to @NoTengoBattery)
     -   Support for both SQLite3 and PostgreSQL
         -   SQLite3 for testing/development
         -   PostgreSQL for deploying/production

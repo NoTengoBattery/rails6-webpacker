@@ -11,6 +11,8 @@ AllCops:
   Exclude:
     - ".bundle/**/*"
     - "node_modules/**/*"
+    - "public/packs*/**/*"
+    - "tmp/**/*"
     - "vendor/**/*"
   DisplayCopNames:                true
   NewCops:                        enable

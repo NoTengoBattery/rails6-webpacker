@@ -28,4 +28,4 @@ jobs:
       - name:             Setup Stylelint
         run:              npm install --save-dev stylelint stylelint-config-sass-guidelines
       - name:             Stylelint Report
-        run:              npx stylelint "**/*.{css,scss}"
+        run:              npx stylelint "**/*.{sass,scss}"
