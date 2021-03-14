@@ -10,8 +10,6 @@ require:
 AllCops:
   Exclude:
     - ".bundle/**/*"
-    - "bin/bundle"
-    - "config/initializers/devise.rb"
     - "node_modules/**/*"
     - "vendor/**/*"
   DisplayCopNames:                true
@@ -20,6 +18,9 @@ AllCops:
 
 Layout/LineLength:
   Max:                            120
+  Exclude:
+  - "bin/bundle"
+  - "config/initializers/devise.rb"
 Style/FrozenStringLiteralComment:
   EnforcedStyle:                  never
 
