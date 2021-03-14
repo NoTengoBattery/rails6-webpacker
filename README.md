@@ -3,7 +3,7 @@
 -   Ruby 3.0
 -   Node.js 14 or newer
 
-# Configuration
+# Configuration [v0.01]
 
 1.  Use the template and make sure to **uncheck** "Include all branches"
 2.  Clone the repository to the local machine
