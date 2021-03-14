@@ -14,9 +14,6 @@ jobs:
       - uses:             ruby/setup-ruby@v1
         with:
           bundler-cache:  true
-      - name:             Setup Rubocop
-        run:              |
-          [ -f .rubocop.yml ] || wget https://raw.githubusercontent.com/microverseinc/linters-config/master/ruby/.rubocop.yml
       - name:             Rubocop Report
         run:              bundle exec rubocop --color
   stylelint:
@@ -29,8 +26,6 @@ jobs:
             node-version: 14
             check-latest: true
       - name:             Setup Stylelint
-        run:              |
-          npm install --save-dev stylelint stylelint-config-sass-guidelines
-          [ -f .stylelintrc.json ] || wget https://raw.githubusercontent.com/microverseinc/linters-config/master/ror/.stylelintrc.json
+        run:              npm install --save-dev stylelint stylelint-config-sass-guidelines
       - name:             Stylelint Report
         run:              npx stylelint "**/*.{css,scss}"
