@@ -2,21 +2,18 @@ class ApplicationController < ActionController::Base
   before_action :configure_locale
 
   private
-    def configure_locale(locale = filter_locale(cookies.permanent[:locale]))
-      accept_languages = request.headers["Accept-Language"] || ""
-      browser_locale = filter_locale(HTTP::Accept::Languages.parse(accept_languages).first&.locale)
-      prefered_locale = locale || browser_locale || I18n.default_locale
-      I18n.locale = cookies.permanent[:locale] = prefered_locale
-    end
-
     def filter_locale(locale)
       return nil if locale.nil?
-      if I18n.available_locales.include?(locale.to_sym)
-        locale.to_sym
-      else
-        locale = locale.to_s.downcase
-        language = locale.split("-", 2).first
-        I18n.available_locales.include?(language.to_sym) ? language.to_sym : nil
-      end
+      language = locale.to_s.split("-", 2).first&.to_sym
+      locale = locale.to_sym
+      I18n.available_locales.include?(locale) ? locale : (I18n.available_locales.include?(language) ? language : nil)
+    end
+
+    def configure_locale(config = {})
+      cookies.permanent[:locale] = filter_locale(config[:new]) if config[:new]
+      I18n.locale = filter_locale(cookies.permanent[:locale])
+      return if cookies.permanent[:locale]
+      browser = filter_locale(HTTP::Accept::Languages.parse(request.headers["Accept-Language"] || "").first&.locale)
+      I18n.locale = cookies.permanent[:locale] = (browser || I18n.default_locale)
     end
 end
