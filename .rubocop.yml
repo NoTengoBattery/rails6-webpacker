@@ -13,7 +13,7 @@ AllCops:
     - "node_modules/**/*"
     - "public/packs*/**/*"
     - "tmp/**/*"
-    - "vendor/**/*"
+    - "vendor/bundle/**/*"
   DisplayCopNames:                true
   NewCops:                        enable
   TargetRubyVersion:              3.0
