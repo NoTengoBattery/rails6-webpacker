@@ -21,10 +21,10 @@ gem "jbuilder", "~> 2.11", ">= 2.11.2"
 # Extra gems required for this project
 gem "devise", "~> 4.7", ">= 4.7.3"
 gem "devise-i18n", "~> 1.9", ">= 1.9.2"
+gem "http-accept", "~> 2.1", ">= 2.1.1"
 gem "image_processing", "~> 1.12", ">= 1.12.1"
 gem "mina", "~> 1.2", ">= 1.2.3"
 gem "mina-ng-puma", github: "NoTengoBattery/mina-ng-puma"
-gem "http-accept", "~> 2.1", ">= 2.1.1"
 gem "rails-i18n", "~> 6.0"
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -41,9 +41,9 @@ group :development, :test do
   # Add the SQLite3 database for development and test
   gem "sqlite3", "~> 1.4", ">= 1.4.2"
   # Add this to both development and test to take advantage of the generators
-  gem "rspec-rails", "~> 4.0", ">= 4.0.2"
   gem "factory_bot_rails", "~> 6.1"
   gem "faker", "~> 2.16"
+  gem "rspec-rails", "~> 4.0", ">= 4.0.2"
   # Helper to avoid N+1 and unused eager loads
   gem "bullet", "~> 6.1", ">= 6.1.4"
 end
@@ -58,11 +58,11 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring", "~> 2.1", ">= 2.1.1"
   # Rubocop linter gems for linting the source code during development
-  gem "rubocop-rails_config", "~> 1.3", ">= 1.3.3"
-  gem "rubocop-rspec", "~> 2.2"
   gem "rubocop-faker", "~> 1.1"
   gem "rubocop-i18n", "~> 3.0"
+  gem "rubocop-rails_config", "~> 1.3", ">= 1.3.3"
   gem "rubocop-rake", "~> 0.5"
+  gem "rubocop-rspec", "~> 2.2"
   # This gem makes internationalization easier
   gem "i18n-tasks", "~> 0.9"
 end
@@ -74,9 +74,9 @@ group :test do
   gem "selenium-webdriver", "~> 3.142", ">= 3.142.7"
   gem "webdrivers", "~> 4.6"
   # Gems to support testing better
+  gem "rails-controller-testing", "~> 1.0", ">= 1.0.5"
   gem "rexml", "~> 3.2", ">= 3.2.4"
   gem "shoulda-matchers", "~> 4.5", ">= 4.5.1"
-  gem "rails-controller-testing", "~> 1.0", ">= 1.0.5"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

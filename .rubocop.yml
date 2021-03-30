@@ -10,6 +10,7 @@ require:
 AllCops:
   Exclude:
     - ".bundle/**/*"
+    - "bin/bundle"
     - "db/**/*"
     - "node_modules/**/*"
     - "public/packs*/**/*"
@@ -19,15 +20,53 @@ AllCops:
   NewCops:                        enable
   TargetRubyVersion:              3.0
 
-Layout/LineLength:
-  Max:                            120
-  Exclude:
-  - "bin/bundle"
-  - "config/initializers/devise.rb"
-Style/FrozenStringLiteralComment:
-  EnforcedStyle:                  never
-
-I18n/RailsI18n:
+Bundler:
+  Enabled:                        true
+Faker:
+  Enabled:                        true
+Gemspec:
   Enabled:                        true
 I18n/GetText:
   Enabled:                        false
+I18n/RailsI18n:
+  Enabled:                        true
+Layout:
+  Enabled:                        true
+Layout/LineLength:
+  Max:                            120
+  Exclude:
+  - "config/initializers/devise.rb"
+Lint:
+  Enabled:                        true
+Metrics:
+  Enabled:                        true
+Metrics/BlockLength:
+  Max:                            60
+Migration:
+  Enabled:                        true
+Naming:
+  Enabled:                        true
+Packaging:
+  Enabled:                        true
+Performance:
+  Enabled:                        true
+RSpec:
+  Enabled:                        true
+RSpec/Capybara:
+  Enabled:                        true
+RSpec/FactoryBot:
+  Enabled:                        true
+RSpec/Rails:
+  Enabled:                        true
+Rails:
+  Enabled:                        true
+Rake:
+  Enabled:                        true
+Security:
+  Enabled:                        true
+Style:
+  Enabled:                        true
+Style/Documentation:
+  Enabled:                        false
+Style/FrozenStringLiteralComment:
+  EnforcedStyle:                  never

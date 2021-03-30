@@ -1,6 +1,5 @@
 require "capybara/rspec"
 
-# rubocop:disable Metrics/BlockLength
 RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
@@ -21,7 +20,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.before(:each) do
+  config.before do
     DatabaseCleaner.strategy = :transaction
   end
 
@@ -38,11 +37,11 @@ RSpec.configure do |config|
     end
   end
 
-  config.before(:each) do
+  config.before do
     DatabaseCleaner.start
   end
 
-  config.append_after(:each) do
+  config.append_after do
     DatabaseCleaner.clean
   end
 
@@ -54,5 +53,4 @@ RSpec.configure do |config|
   config.before(:each, type: :system, js: true) do
     driven_by :selenium_headless
   end
-  # rubocop:enable Metrics/BlockLength
 end
