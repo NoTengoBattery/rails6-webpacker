@@ -23,7 +23,7 @@ gem "devise", "~> 4.7", ">= 4.7.3"
 gem "devise-i18n", "~> 1.9", ">= 1.9.2"
 gem "image_processing", "~> 1.12", ">= 1.12.1"
 gem "mina", "~> 1.2", ">= 1.2.3"
-gem "mina-ng-puma", git: "https://github.com/NoTengoBattery/mina-ng-puma.git"
+gem "mina-ng-puma", github: "NoTengoBattery/mina-ng-puma"
 gem "http-accept", "~> 2.1", ">= 2.1.1"
 gem "rails-i18n", "~> 6.0"
 
@@ -44,6 +44,8 @@ group :development, :test do
   gem "rspec-rails", "~> 4.0", ">= 4.0.2"
   gem "factory_bot_rails", "~> 6.1"
   gem "faker", "~> 2.16"
+  # Helper to avoid N+1 and unused eager loads
+  gem "bullet", "~> 6.1", ">= 6.1.4"
 end
 
 group :development do
@@ -54,7 +56,7 @@ group :development do
   gem "listen", "~> 3.4", ">= 3.4.1"
   gem "rack-mini-profiler", "~> 2.3", ">= 2.3.1"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem "spring"
+  gem "spring", "~> 2.1", ">= 2.1.1"
   # Rubocop linter gems for linting the source code during development
   gem "rubocop-rails_config", "~> 1.3", ">= 1.3.3"
   gem "rubocop-rspec", "~> 2.2"
