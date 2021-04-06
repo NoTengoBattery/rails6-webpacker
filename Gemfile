@@ -21,11 +21,13 @@ gem "jbuilder", "~> 2.11", ">= 2.11.2"
 # Extra gems required for this project
 gem "devise", "~> 4.7", ">= 4.7.3"
 gem "devise-i18n", "~> 1.9", ">= 1.9.2"
-gem "http-accept", "~> 2.1", ">= 2.1.1"
 gem "image_processing", "~> 1.12", ">= 1.12.1"
+gem "kaminari", "~> 1.2", ">= 1.2.1"
 gem "mina", "~> 1.2", ">= 1.2.3"
 gem "mina-ng-puma", github: "NoTengoBattery/mina-ng-puma"
+gem "parser", "3.0.0"
 gem "rails-i18n", "~> 6.0"
+gem "rest-client", "~> 2.1"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", "~> 1.7", ">= 1.7.2", require: false

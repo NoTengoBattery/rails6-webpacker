@@ -1,12 +1,12 @@
 # Dependencies
 
--   Ruby 3.0
+-   Ruby 3.0.0
 -   Node.js 14 or newer
 -   yarn
 
 > Extra dependencies may be needed according to the configuration and the features of the application.
 
-# Configuration [0.30]
+# Configuration [0.35]
 
 1.  Use the template and make sure to **uncheck** "Include all branches"
 2.  Clone the repository to the local machine
