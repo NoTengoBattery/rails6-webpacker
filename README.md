@@ -25,8 +25,8 @@
 10. Also, do not forget to change the name and version from the `package.json` file
 11. Execute the Rubocop command, so the linter's workflow won't fail: `bundle exec rubocop -A`
 12. Execute the Stylelint command, so the linter's workflow won't fail: `npx stylelint --fix "**/*.{sass,scss}"`
-13. Make sure all test are passing: `bundle exec rspec"` (ignore the i18n-tasks test, but if you want them to pass just delete the file `config/locales/en.yml` and create it when needed)
-14. Start the server with `bundle exec rails server"` and make sure it's working
+13. Make sure all test are passing: `bundle exec rspec` (ignore the i18n-tasks test, but if you want them to pass just delete the file `config/locales/en.yml` and create it when needed)
+14. Start the server with `bundle exec rails server` and make sure it's working
 15. Add and commit all your changes
 16. Finalize your feature branch and merge your changes
 17. Everything should be ready to start working!
