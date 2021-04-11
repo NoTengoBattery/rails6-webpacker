@@ -26,7 +26,6 @@ if (process.env.NODE_ENV === "production") {
         './app/packs/**/*.vue',
       ],
       safelist: {
-        standard: ['show'],
         greedy: [/^%/]
       },
       defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
