@@ -1,31 +1,44 @@
-name:                     Linters
+name: Linters
 
-on:                       [pull_request, release]
+on: [pull_request, release]
 
 env:
-  FORCE_COLOR:            1
+  FORCE_COLOR: 1
 
 jobs:
   rubocop:
-    name:                 Rubocop
-    runs-on:              ubuntu-latest
+    name: Rubocop
+    runs-on: ubuntu-latest
     steps:
-      - uses:             actions/checkout@v2
-      - uses:             ruby/setup-ruby@v1
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
         with:
-          bundler-cache:  true
-      - name:             Rubocop Report
-        run:              bundle exec rubocop --color
+          bundler-cache: true
+      - name: Rubocop Report
+        run: bundle exec rubocop --color
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          check-latest: true
+      - name: Setup ESLint
+        run: npm install
+      - name: ESLint Report
+        run: npx eslint .
   stylelint:
-    name:                 StyleLint
-    runs-on:              ubuntu-latest
+    name: StyleLint
+    runs-on: ubuntu-latest
     steps:
-      - uses:             actions/checkout@v2
-      - uses:             actions/setup-node@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-            node-version: 14
-            check-latest: true
-      - name:             Setup Stylelint
-        run:              npm install --save-dev stylelint stylelint-config-sass-guidelines
-      - name:             Stylelint Report
-        run:              npx stylelint "**/*.{sass,scss}"
+          node-version: 14
+          check-latest: true
+      - name: Setup Stylelint
+        run: npm install
+      - name: Stylelint Report
+        run: npx stylelint "**/*.{sass,scss}"

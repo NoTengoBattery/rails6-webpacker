@@ -3,9 +3,6 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # Code is not reloaded between requests.
-  config.cache_classes = true
-
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
@@ -50,7 +47,21 @@ Rails.application.configure do
   config.log_tags = [:request_id]
 
   # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  config.cache_classes = true
+  config.action_controller.perform_caching = true
+  config.action_view.cache_template_loading = true
+
+  cache_servers = %w[redis://localhost:6379/0]
+  config.cache_store = :redis_cache_store, {
+    url: cache_servers,
+    connect_timeout: 20,
+    read_timeout: 0.15,
+    write_timeout: 0.15,
+    reconnect_attempts: 1
+  }
+  config.public_file_server.headers = {
+    "Cache-Control" => "public, max-age=#{2.days.to_i}"
+  }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque

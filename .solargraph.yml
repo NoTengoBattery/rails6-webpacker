@@ -1,0 +1,13 @@
+include:
+  - "**/*.rb"
+exclude:
+  - ".bundle/**/*"
+  - "node_modules/**/*"
+  - "public/packs*/**/*"
+  - "tmp/**/*"
+  - "vendor/bundle/**/*"
+require: []
+domains: []
+reporters:
+  - all!
+max_files: 5000

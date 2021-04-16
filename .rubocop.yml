@@ -16,57 +16,57 @@ AllCops:
     - "public/packs*/**/*"
     - "tmp/**/*"
     - "vendor/bundle/**/*"
-  DisplayCopNames:                true
-  NewCops:                        enable
-  TargetRubyVersion:              3.0.0
+  DisplayCopNames: true
+  NewCops: enable
+  TargetRubyVersion: 3.0.1
 
 Bundler:
-  Enabled:                        true
+  Enabled: true
 Faker:
-  Enabled:                        true
+  Enabled: true
 Gemspec:
-  Enabled:                        true
+  Enabled: true
 I18n/GetText:
-  Enabled:                        false
+  Enabled: false
 I18n/RailsI18n:
-  Enabled:                        true
+  Enabled: true
 Layout:
-  Enabled:                        true
+  Enabled: true
 Layout/LineLength:
-  Max:                            120
+  Max: 120
   Exclude:
-  - "config/initializers/devise.rb"
+    - "config/initializers/devise.rb"
 Lint:
-  Enabled:                        true
+  Enabled: true
 Metrics:
-  Enabled:                        true
+  Enabled: true
 Metrics/BlockLength:
-  Max:                            60
+  Max: 60
 Migration:
-  Enabled:                        true
+  Enabled: true
 Naming:
-  Enabled:                        true
+  Enabled: true
 Packaging:
-  Enabled:                        true
+  Enabled: true
 Performance:
-  Enabled:                        true
+  Enabled: true
 RSpec:
-  Enabled:                        true
+  Enabled: true
 RSpec/Capybara:
-  Enabled:                        true
+  Enabled: true
 RSpec/FactoryBot:
-  Enabled:                        true
+  Enabled: true
 RSpec/Rails:
-  Enabled:                        true
+  Enabled: true
 Rails:
-  Enabled:                        true
+  Enabled: true
 Rake:
-  Enabled:                        true
+  Enabled: true
 Security:
-  Enabled:                        true
+  Enabled: true
 Style:
-  Enabled:                        true
+  Enabled: true
 Style/Documentation:
-  Enabled:                        false
+  Enabled: false
 Style/FrozenStringLiteralComment:
-  EnforcedStyle:                  never
+  EnforcedStyle: never

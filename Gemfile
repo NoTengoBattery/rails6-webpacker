@@ -1,8 +1,8 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "~> 3.0.0"
-gem "parser", "3.0.0"
+ruby "~> 3.0.1"
+gem "parser", "3.0.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem "rails", "~> 6.1", ">= 6.1.3"
@@ -20,6 +20,7 @@ gem "redis", "~> 4.2", ">= 4.2.5"
 # gem 'bcrypt', '~> 3.1', '>= 3.1.16'
 
 # Extra gems required for this project
+gem "annotate", "~> 3.1"
 gem "devise", "~> 4.7", ">= 4.7.3"
 gem "devise-i18n", "~> 1.9", ">= 1.9.2"
 gem "haml", "~> 5.2", ">= 5.2.1"
@@ -47,6 +48,8 @@ group :development, :test do
   gem "rspec-rails", "~> 4.0", ">= 4.0.2"
   # Helper to avoid N+1 and unused eager loads
   gem "bullet", "~> 6.1", ">= 6.1.4"
+  # Language server for Rails
+  gem "solargraph-rails", "~> 0.2.0.pre"
 end
 
 group :development do

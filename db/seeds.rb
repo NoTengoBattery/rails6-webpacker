@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Dir[Rails.root.join("db/#{Rails.env}-seeds/*.rb")].sort.each do |file|
+Dir[Rails.root.join("db/#{Rails.env}-seeds/*.rb")].each do |file|
   puts "Processing #{file.split('/').last}"
   require file
 end

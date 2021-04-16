@@ -1,4 +1,4 @@
-const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
   optimization: {
@@ -9,10 +9,10 @@ module.exports = {
           ecma: 2020,
           compress: {
             defaults: true,
-            passes: 3,
-          },
-        },
-      }),
-    ],
-  },
-};
+            passes: 3
+          }
+        }
+      })
+    ]
+  }
+}
