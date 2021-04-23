@@ -26,7 +26,7 @@ jobs:
           node-version: 14
           check-latest: true
       - name: Setup ESLint
-        run: npm install
+        run: yarn install
       - name: ESLint Report
         run: npx eslint .
   stylelint:
@@ -39,6 +39,6 @@ jobs:
           node-version: 14
           check-latest: true
       - name: Setup Stylelint
-        run: npm install
+        run: yarn install
       - name: Stylelint Report
         run: npx stylelint "**/*.{sass,scss}"

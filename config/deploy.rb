@@ -10,10 +10,12 @@ require "mina/puma"
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
-set :application_name, "website"
+project_name = "website"
+
+set :application_name, project_name
 set :domain, "website.com"
-set :deploy_to, "/www/sites/website"
-set :repository, "git@git.com:User/website.git"
+set :deploy_to, "/www/#{project_name}"
+set :repository, "git@git.com:user/website.git"
 set :branch, "main"
 
 # Optional settings:
@@ -21,11 +23,13 @@ set :branch, "main"
 #   set :port, '30000'           # SSH port number.
 #   set :forward_agent, true     # SSH forward_agent.
 
+set :user, "rails"
+
 # Shared dirs and files will be symlinked into the app-folder by the 'deploy:link_shared_paths' step.
 # Some plugins already add folders to shared_dirs like `mina/rails` add `public/assets`, `vendor/bundle` and many more
 # run `mina -d` to see all folders and files already included in `shared_dirs` and `shared_files`
 set :shared_dirs, fetch(:shared_dirs, []).push("tmp/pids", "tmp/sockets", "node_modules", "storage")
-set :shared_files, fetch(:shared_files, []).push("config/master.key", "config/puma.rb", "config/secrets.yml")
+set :shared_files, fetch(:shared_files, []).push("config/master.key", "config/puma.rb")
 
 # This task is the environment that is loaded for all remote run commands, such as
 # `mina deploy` or `mina rake`.
@@ -44,7 +48,6 @@ task :setup do
   # command %{rbenv install 2.3.0 --skip-existing}
   command %(touch "#{fetch(:shared_path)}/config/master.key")
   command %(touch "#{fetch(:shared_path)}/config/puma.rb")
-  command %(touch "#{fetch(:shared_path)}/config/secrets.yml")
   comment "WARNING: Be sure to edit the files deployed to '#{fetch(:shared_path)}'"
 end
 

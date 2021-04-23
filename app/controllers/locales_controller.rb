@@ -5,7 +5,7 @@ class LocalesController < ApplicationController
   end
 
   def default_locale
-    cookies.permanent[:locale] = nil
+    self.cookie_locale = nil
     configure_locale
     redirect_back fallback_location: root_path
   end

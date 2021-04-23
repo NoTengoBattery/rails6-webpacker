@@ -1,3 +1,5 @@
+require "shoulda-matchers"
+
 RSpec.configure do |_config|
   Shoulda::Matchers.configure do |config_shoulda|
     config_shoulda.integrate do |with|

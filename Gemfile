@@ -9,13 +9,14 @@ gem "rails", "~> 6.1", ">= 6.1.3"
 # Use Puma as the app server
 gem "puma", "~> 5.2", ">= 5.2.2"
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem "webpacker", "6.0.0.beta.6", ">= 6.0.0.beta.6"
+gem "webpacker", "6.0.0.beta.7", ">= 6.0.0.beta.6"
 # Turbo makes navigating your web application faster.
 gem "turbo-rails", "~> 0.5.9"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.11", ">= 2.11.2"
 # Use Redis adapter to run Action Cable in production
-gem "redis", "~> 4.2", ">= 4.2.5"
+gem "hiredis", "~> 0.6.3"
+gem "redis", "~> 4.2", ">= 4.2.5", require: ["redis", "redis/connection/hiredis"]
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1', '>= 3.1.16'
 
@@ -48,8 +49,8 @@ group :development, :test do
   gem "rspec-rails", "~> 4.0", ">= 4.0.2"
   # Helper to avoid N+1 and unused eager loads
   gem "bullet", "~> 6.1", ">= 6.1.4"
-  # Language server for Rails
-  gem "solargraph-rails", "~> 0.2.0.pre"
+  # Language server for Ruby (useful with the VSC extension)
+  gem "solargraph", "~> 0.40.4"
 end
 
 group :development do

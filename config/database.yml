@@ -17,7 +17,7 @@
 
 sqlite_config: &sqlite_config
   adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 1 } %>
+  pool: <%= ENV.fetch("RAILS_DB_THREADS") { 1 } %>
   timeout: 5000
 
 default: &default
@@ -25,7 +25,7 @@ default: &default
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: <%= ENV.fetch("RAILS_DB_THREADS") { 5 } %>
 
 development:
   <<: *sqlite_config

@@ -11,6 +11,9 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module'
   },
+  plugins: [
+    // '@typescript-eslint/eslint-plugin'
+  ],
   ignorePatterns: [
     '.bundle/',
     'node_modules/',

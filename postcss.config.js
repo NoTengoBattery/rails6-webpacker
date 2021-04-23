@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'production') {
         './app/helpers/**/*.rb',
         './app/packs/**/*.js',
         './app/packs/**/*.jsx',
-        './app/packs/**/*.vue'
+        './app/packs/**/*.ts'
       ],
       safelist: {
         greedy: [/^%/]

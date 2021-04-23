@@ -6,7 +6,7 @@ module.exports = {
       new TerserPlugin({
         parallel: true,
         terserOptions: {
-          ecma: 2020,
+          ecma: 2021,
           compress: {
             defaults: true,
             passes: 3

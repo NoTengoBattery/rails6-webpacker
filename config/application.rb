@@ -39,6 +39,19 @@ module WebsiteTemplate
     config.generators.system_tests = nil
 
     # Setup the supported locales for the project
-    config.i18n.available_locales = [:en]
+    config.i18n.available_locales = %i[en]
+
+    # Configure the Redis cache store
+    cache_servers = ENV.fetch("REDIS_SOCKET") { "unix:///tmp/.s.REDIS.6379" }
+    config.cache_store = :redis_cache_store, {
+      url: cache_servers,
+      connect_timeout: 20,
+      read_timeout: 0.15,
+      write_timeout: 0.15,
+      reconnect_attempts: 1
+    }
+
+    # Share the cookies among all the domains by default
+    config.session_store :cookie_store, domain: :all
   end
 end

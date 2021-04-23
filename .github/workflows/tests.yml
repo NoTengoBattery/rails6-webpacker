@@ -4,6 +4,8 @@ on: [pull_request, release]
 
 env:
   FORCE_COLOR: 1
+  RAILS_ENV: test
+  RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
 
 jobs:
   rspec:
@@ -21,6 +23,4 @@ jobs:
       - name: Setup RSpec compatible with Capybara
         run: bundle exec bin/setup
       - name: RSpec Report
-        env:
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: bundle exec rspec --force-color --format documentation

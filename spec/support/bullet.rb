@@ -1,3 +1,5 @@
+require "bullet"
+
 RSpec.configure do |config|
   if Bullet.enable?
     config.before do

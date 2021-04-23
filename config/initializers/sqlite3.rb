@@ -1,4 +1,4 @@
-if ::ActiveRecord::Base.connection_config[:adapter] == "sqlite3" && (c = ::ActiveRecord::Base.connection)
+if ::ActiveRecord::Base.connection_db_config.adapter == "sqlite3" && (c = ::ActiveRecord::Base.connection)
   # see http://www.sqlite.org/pragma.html for details
 
   # Page size of the database. The page size must be a power of two between 512 and 65536 inclusive

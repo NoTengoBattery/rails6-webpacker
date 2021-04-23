@@ -7,11 +7,11 @@ module Localizable
     end
 
     def cookie_locale=(locale)
-      cookies.permanent[:locale] = locale
+      cookies.permanent[:locale] = { value: locale, domain: :all }
     end
 
     def i18n_locale=(locale)
-      I18n.locale = cookies.permanent[:locale] = locale
+      I18n.locale = self.cookie_locale = locale
     end
 
     def filter_locale(locale)
