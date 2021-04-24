@@ -53,5 +53,9 @@ module WebsiteTemplate
 
     # Share the cookies among all the domains by default
     config.session_store :cookie_store, domain: :all
+
+    # Custom configurations for this application
+    config.x.peferences_session_cookie = :_preferences
+    config.x.preference_key_locale = :locale
   end
 end

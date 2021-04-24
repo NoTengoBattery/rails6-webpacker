@@ -1,7 +1,26 @@
 {
   "extends": [
-    "stylelint-config-sass-guidelines"
+    "stylelint-config-sass-guidelines",
+    "stylelint-prettier/recommended"
   ],
+  "plugins": [
+    "stylelint-order",
+    "stylelint-prettier",
+    "stylelint-scss"
+  ],
+  "rules": {
+    "no-descending-specificity": true,
+    "max-nesting-depth": [
+      3,
+      {
+        "ignore": [
+          "blockless-at-rules",
+          "pseudo-classes"
+        ]
+      }
+    ],
+    "prettier/prettier": true
+  },
   "ignoreFiles": [
     ".bundle/**",
     "node_modules/**",

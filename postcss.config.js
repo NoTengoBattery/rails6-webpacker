@@ -27,9 +27,6 @@ if (process.env.NODE_ENV === 'production') {
         './app/packs/**/*.jsx',
         './app/packs/**/*.ts'
       ],
-      safelist: {
-        greedy: [/^%/]
-      },
       defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
     })
   )

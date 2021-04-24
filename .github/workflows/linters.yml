@@ -28,9 +28,9 @@ jobs:
       - name: Setup ESLint
         run: yarn install
       - name: ESLint Report
-        run: npx eslint .
+        run: yarn eslint .
   stylelint:
-    name: StyleLint
+    name: Stylelint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -41,4 +41,17 @@ jobs:
       - name: Setup Stylelint
         run: yarn install
       - name: Stylelint Report
-        run: npx stylelint "**/*.{sass,scss}"
+        run: yarn stylelint "**/*.{sass,scss}"
+  typescript:
+    name: TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          check-latest: true
+      - name: Setup TypeScript
+        run: yarn install
+      - name: TypeScript Report
+        run: yarn tsc --pretty
