@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'production') {
 // Add plugins at the end of the chain
 postcss.plugins.push(
   [
-    // require('autoprefixer')
+    require('autoprefixer')
   ]
 )
 
