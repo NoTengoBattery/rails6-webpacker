@@ -5,6 +5,7 @@ const webpackConfig = require('./base')
 let production = {}
 
 const terserPlugin = require('./terser')
+webpackConfig.optimization.minimizer = []
 production = merge(production, terserPlugin)
 
 module.exports = merge(webpackConfig, production)

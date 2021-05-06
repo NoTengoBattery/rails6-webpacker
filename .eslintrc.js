@@ -20,7 +20,7 @@ module.exports = {
   ignorePatterns: [
     '.bundle/',
     'node_modules/',
-    'public/packs*/',
+    'public/',
     'tmp/',
     'vendor/bundle/'
   ],

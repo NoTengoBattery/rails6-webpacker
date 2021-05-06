@@ -13,7 +13,7 @@ AllCops:
     - "bin/bundle"
     - "db/**/*"
     - "node_modules/**/*"
-    - "public/packs*/**/*"
+    - "public/**/*"
     - "tmp/**/*"
     - "vendor/bundle/**/*"
   DisplayCopNames: true
@@ -52,6 +52,8 @@ Performance:
   Enabled: true
 RSpec:
   Enabled: true
+RSpec/ImplicitSubject:
+  Enabled: false
 RSpec/Capybara:
   Enabled: true
 RSpec/FactoryBot:

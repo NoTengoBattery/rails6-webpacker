@@ -24,3 +24,13 @@ jobs:
         run: bundle exec bin/setup
       - name: RSpec Report
         run: bundle exec rspec --force-color --format documentation
+  i18n-taks:
+    name: I18n Tasks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: I18n Tasks Health
+        run: bundle exec i18n-tasks health

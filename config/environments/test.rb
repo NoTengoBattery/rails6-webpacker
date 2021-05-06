@@ -64,6 +64,9 @@ Rails.application.configure do
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 
-  # Mailer option for Devise
+  # Do not try to send mails when testing
   config.action_mailer.delivery_method = :test
+
+  # Allow Devise to work with the Mailer in the testing environment
+  config.action_mailer.default_url_options = { host: "localhost", port: ENV.fetch("PORT", 3000) }
 end

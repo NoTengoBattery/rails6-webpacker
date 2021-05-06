@@ -28,7 +28,7 @@ jobs:
       - name: Setup ESLint
         run: yarn install
       - name: ESLint Report
-        run: yarn eslint .
+        run: yarn eslint "app/packs/**/**.{js,ts}"
   stylelint:
     name: Stylelint
     runs-on: ubuntu-latest
@@ -41,7 +41,7 @@ jobs:
       - name: Setup Stylelint
         run: yarn install
       - name: Stylelint Report
-        run: yarn stylelint "**/*.{sass,scss}"
+        run: yarn stylelint "app/packs/**/**.{sass,scss}"
   typescript:
     name: TypeScript
     runs-on: ubuntu-latest

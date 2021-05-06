@@ -1,8 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "~> 3.0.1"
-gem "parser", "3.0.1"
+ruby "~> 3.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem "rails", "~> 6.1", ">= 6.1.3"
@@ -11,11 +10,11 @@ gem "puma", "~> 5.2", ">= 5.2.2"
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem "webpacker", "6.0.0.beta.7", ">= 6.0.0.beta.6"
 # Turbo makes navigating your web application faster.
-gem "turbo-rails", "~> 0.5.9"
+gem "turbo-rails", "~> 0.5"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.11", ">= 2.11.2"
 # Use Redis adapter to run Action Cable in production
-gem "hiredis", "~> 0.6.3"
+gem "hiredis", "~> 0.6"
 gem "redis", "~> 4.2", ">= 4.2.5", require: ["redis", "redis/connection/hiredis"]
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1', '>= 3.1.16'
@@ -24,6 +23,7 @@ gem "redis", "~> 4.2", ">= 4.2.5", require: ["redis", "redis/connection/hiredis"
 gem "annotate", "~> 3.1"
 gem "devise", "~> 4.7", ">= 4.7.3"
 gem "devise-i18n", "~> 1.9", ">= 1.9.2"
+gem "irb", "~> 1.3", ">= 1.3.5"
 gem "haml", "~> 5.2", ">= 5.2.1"
 gem "image_processing", "~> 1.12", ">= 1.12.1"
 gem "kaminari", "~> 1.2", ">= 1.2.1"
@@ -50,7 +50,7 @@ group :development, :test do
   # Helper to avoid N+1 and unused eager loads
   gem "bullet", "~> 6.1", ">= 6.1.4"
   # Language server for Ruby (useful with the VSC extension)
-  gem "solargraph", "~> 0.40.4"
+  gem "solargraph", "~> 0.40"
 end
 
 group :development do
@@ -72,7 +72,7 @@ group :development do
   gem "i18n-tasks", "~> 0.9"
   # Use mina for deploying Puma applications
   gem "mina", "~> 1.2", ">= 1.2.3"
-  gem "mina-ng-puma", github: "NoTengoBattery/mina-ng-puma"
+  gem "mina-systemd", github: "NoTengoBattery/mina-systemd"
 end
 
 group :test do

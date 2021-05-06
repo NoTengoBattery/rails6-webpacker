@@ -3,7 +3,7 @@ include:
 exclude:
   - ".bundle/**/*"
   - "node_modules/**/*"
-  - "public/packs*/**/*"
+  - "public/**/*"
   - "tmp/**/*"
   - "vendor/bundle/**/*"
 require: []

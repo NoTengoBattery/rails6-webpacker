@@ -1,6 +1,6 @@
 require "mina/rails"
 require "mina/git"
-require "mina/puma"
+require "mina/systemd"
 # require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
 # require 'mina/rvm'    # for rvm support. (https://rvm.io)
 
@@ -66,7 +66,7 @@ task :deploy do
     invoke :'deploy:cleanup'
 
     on :launch do
-      invoke :'puma:restart'
+      invoke :'systemctl:restart', "rails-#{project_name}"
       in_path(fetch(:current_path)) do
         command %(mkdir -p tmp/)
         command %(touch tmp/restart.txt)
