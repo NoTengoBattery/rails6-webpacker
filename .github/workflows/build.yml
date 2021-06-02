@@ -1,10 +1,14 @@
 ---
-# Run all the jobs needed to automatically deploy (CD) on push to the repo
+# Run all the jobs needed to automatically build and test the app
 
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
+    branches:
+      - development
+      - main
+  pull_request:
     branches:
       - development
       - main
