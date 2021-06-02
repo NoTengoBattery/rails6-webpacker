@@ -8,7 +8,7 @@ gem "rails", "~> 6.1", ">= 6.1.3"
 # Use Puma as the app server
 gem "puma", "~> 5.3", ">= 5.3.2"
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem "webpacker", "6.0.0.beta.7"
+gem "webpacker", "= 6.0.0.beta.7"
 # Turbo makes navigating your web application faster.
 gem "turbo-rails", "~> 0.5"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
