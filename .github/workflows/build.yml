@@ -1,0 +1,254 @@
+---
+# Run all the jobs needed to automatically deploy (CD) on push to the repo
+
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - development
+      - main
+
+jobs:
+  rubocop:
+    name: Rubocop
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Prepare Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Rubocop report
+        env:
+          FORCE_COLOR: 1
+        run: bundle exec rubocop --color --fail-fast --parallel
+
+  haml-lint:
+    name: HAML Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Prepare Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: HAML Lint report
+        env:
+          FORCE_COLOR: 1
+        run: bundle exec haml-lint --color --fail-fast --parallel
+
+  eslint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Get Node.js version
+        uses: nodenv/actions/node-version@v2
+        id: nodenv
+      - name: Prepare Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "${{ steps.nodenv.outputs.node-version }}"
+      - name: Get yarn cache path
+        id: yarn-cache-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache yarn modules
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup ESLint
+        run: yarn install
+      - name: ESLint report
+        env:
+          FORCE_COLOR: 1
+        run: yarn eslint --color
+
+  stylelint:
+    name: Stylelint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Get Node.js version
+        uses: nodenv/actions/node-version@v2
+        id: nodenv
+      - name: Prepare Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "${{ steps.nodenv.outputs.node-version }}"
+      - name: Get yarn cache path
+        id: yarn-cache-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache yarn modules
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup Stylelint
+        run: yarn install
+      - name: Stylelint report
+        env:
+          FORCE_COLOR: 1
+        run: yarn stylelint --color
+
+  typescript:
+    name: TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Get Node.js version
+        uses: nodenv/actions/node-version@v2
+        id: nodenv
+      - name: Prepare Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "${{ steps.nodenv.outputs.node-version }}"
+      - name: Get yarn cache path
+        id: yarn-cache-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache yarn modules
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup TypeScript
+        run: yarn install
+      - name: TypeScript report
+        env:
+          FORCE_COLOR: 1
+        run: yarn tsc
+
+  i18n-tasks:
+    name: I18n Tasks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Prepare Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: I18n Tasks Health
+        env:
+          FORCE_COLOR: 1
+        run: bundle exec i18n-tasks health
+
+  build:
+    name: Application build
+    runs-on: ubuntu-latest
+    needs: [rubocop, haml-lint, eslint, stylelint, typescript, i18n-tasks]
+    env:
+      RAILS_ENV: production
+      NODE_ENV: production
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Prepare Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Get Node.js version
+        uses: nodenv/actions/node-version@v2
+        id: nodenv
+      - name: Prepare Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "${{ steps.nodenv.outputs.node-version }}"
+      - name: Get yarn cache path
+        id: yarn-cache-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache yarn modules
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      - name: "[REMOVE THIS STEP ON YOUR REPO]"
+        run: EDITOR=true bundle exec rails credentials:edit
+      - name: Compile the Webpacker assets
+        env:
+          FORCE_COLOR: 1
+        run: |
+          yarn install --frozen-lockfile --ignore-optional --prefer-offline --production
+          bundle exec rails assets:precompile
+
+  test:
+    name: Test suite
+    runs-on: ubuntu-latest
+    needs: [build]
+    env:
+      PGHOST: localhost
+      PGPORT: 5432
+      POSTGRES_DB: postgres_db
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      RAILS_ENV: test
+    strategy:
+      matrix:
+        browser: [chrome, firefox]
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 1s
+          --health-timeout 5s
+          --health-retries 3
+        ports:
+          - 5432:5432
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Prepare Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Get Node.js version
+        uses: nodenv/actions/node-version@v2
+        id: nodenv
+      - name: Prepare Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "${{ steps.nodenv.outputs.node-version }}"
+      - name: Get yarn cache path
+        id: yarn-cache-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache yarn modules
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup the testing database
+        env:
+          FORCE_COLOR: 1
+        run: bin/rails db:setup
+
+      # Currently, Capybara supports Chrome and Firefox
+      - name: Use Firefox browser for the test suite
+        if: matrix.browser == 'firefox'
+        uses: browser-actions/setup-firefox@latest
+      - name: Use Chrome browser for the test suite
+        if: matrix.browser == 'chrome'
+        uses: browser-actions/setup-chrome@latest
+
+      - name: RSpec test suite report for ${{ matrix.browser }}
+        env:
+          FORCE_COLOR: 1
+          USING_BROWSER: ${{ matrix.browser }}
+        run: |
+          bundle exec rails assets:precompile
+          bundle exec rspec --force-color

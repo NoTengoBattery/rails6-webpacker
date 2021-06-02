@@ -1,0 +1,78 @@
+@use 'sass:math';
+
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+}
+
+.main-flex {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  margin: auto;
+  width: 100%;
+
+  .emoji {
+    position: relative;
+  }
+
+  .base {
+    filter: drop-shadow(0 0 5px rgb(0, 0, 0.5));
+    font-size: math.div(100, 1.6) * 1vmin;
+  }
+
+  .overlay {
+    filter: drop-shadow(3px 3px 15px rgb(0, 0, 0.5));
+    font-size: math.div(100, 2.5)    * 1vmin;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  %codeable {
+    color: inherit;
+    font-weight: bold;
+    line-height: 1.5em;
+  }
+
+  .message {
+    @extend %codeable;
+
+    font-size: 6vmin;
+  }
+
+  %codeable-small,
+  .contact {
+    @extend %codeable;
+
+    font-size: 5vmin;
+  }
+
+  a {
+    @extend %codeable-small;
+  }
+}
+
+.locales {
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    @extend %codeable-small;
+
+    float: left;
+  }
+
+  li::before,
+  li:last-child::after {
+    content: '|';
+    padding: 3px;
+  }
+}

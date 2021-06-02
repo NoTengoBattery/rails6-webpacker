@@ -1,0 +1,10 @@
+Spring.watch(
+  ".node-version",
+  ".rbenv-vars",
+  ".ruby-version",
+  "config/application.rb",
+  "config/puma.rb",
+  "config/webpacker.yml",
+  "tmp/caching-dev.txt",
+  "tmp/restart.txt"
+)

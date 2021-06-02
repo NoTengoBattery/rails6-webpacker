@@ -1,0 +1,87 @@
+---
+inherit_gem:
+  rubocop-rails_config:
+    - config/rails.yml
+require:
+  - rubocop-faker
+  - rubocop-i18n
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-rspec
+AllCops:
+  Exclude:
+    - ".bundle/**/*"
+    - "bin/bundle"
+    - "node_modules/**/*"
+    - "public/**/*"
+    - "tmp/**/*"
+    - "vendor/bundle/**/*"
+  DisplayCopNames: true
+  NewCops: enable
+  TargetRubyVersion: 3.0.1
+
+Bundler:
+  Enabled: true
+Faker:
+  Enabled: true
+Gemspec:
+  Enabled: true
+I18n/GetText:
+  Enabled: false
+I18n/RailsI18n:
+  Enabled: true
+Layout:
+  Enabled: true
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - "config/initializers/devise.rb"
+Lint:
+  Enabled: true
+Metrics:
+  Enabled: true
+Metrics/AbcSize:
+  Exclude:
+    - "db/**/*"
+Metrics/BlockLength:
+  Exclude:
+    - "db/**/*"
+  Max: 60
+Metrics/MethodLength:
+  Exclude:
+    - "db/**/*"
+Migration:
+  Enabled: true
+Naming:
+  Enabled: true
+Packaging:
+  Enabled: true
+Performance:
+  Enabled: true
+RSpec:
+  Enabled: true
+RSpec/ImplicitSubject:
+  Enabled: false
+RSpec/Capybara:
+  Enabled: true
+RSpec/FactoryBot:
+  Enabled: true
+RSpec/Rails:
+  Enabled: true
+Rails:
+  Enabled: true
+Rails/CreateTableWithTimestamps:
+  Exclude:
+    - "db/**/*active_storage*"
+Rails/FilePath:
+  Enabled: false
+Rake:
+  Enabled: true
+Security:
+  Enabled: true
+Style:
+  Enabled: true
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
