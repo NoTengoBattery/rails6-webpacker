@@ -947,9 +947,9 @@
     strip-json-comments "^3.1.1"
 
 "@fontsource/jetbrains-mono@^4.4":
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/@fontsource/jetbrains-mono/-/jetbrains-mono-4.4.2.tgz#167724722e845a24706b557baeda82ce89418458"
-  integrity sha512-5kDjpcnQFogrgGulmES5xX80cDd628+69zSE0ClTqzOAYI43yTyH3MeAH4mxohN6MR7v7AQ9bn+OOFvUuuYwBA==
+  version "4.4.5"
+  resolved "https://registry.yarnpkg.com/@fontsource/jetbrains-mono/-/jetbrains-mono-4.4.5.tgz#1448c1611ebfdf360847e40328f643ab642247ab"
+  integrity sha512-/xBExp46j7LF0v3mVSy46gEL4NICOyTW8zLKEJegMd5pRBprTwcPY1xpDnAbsljiq9gMSvUyoV4aJ+D61wjjCw==
 
 "@fullhuman/postcss-purgecss@^3.1.3":
   version "3.1.3"
