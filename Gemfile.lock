@@ -196,7 +196,7 @@ GEM
     msgpack (1.4.2)
     netrc (0.11.0)
     nio4r (2.5.7)
-    nokogiri (1.11.6-x86_64-linux)
+    nokogiri (1.11.7-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.20.1)
@@ -284,13 +284,13 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
-    rubocop (1.15.0)
+    rubocop (1.16.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml
-      rubocop-ast (>= 1.5.0, < 2.0)
+      rubocop-ast (>= 1.7.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.7.0)
@@ -331,7 +331,7 @@ GEM
     semantic_range (3.0.0)
     shoulda-matchers (4.5.1)
       activesupport (>= 4.2.0)
-    solargraph (0.41.1)
+    solargraph (0.41.2)
       backport (~> 1.1)
       benchmark
       bundler (>= 1.17.2)
@@ -431,7 +431,7 @@ DEPENDENCIES
   rubocop-rspec (~> 2.3)
   selenium-webdriver
   shoulda-matchers (~> 4.5, >= 4.5.1)
-  solargraph (~> 0.40)
+  solargraph (~> 0.41)
   spring (~> 2.1, >= 2.1.1)
   turbo-rails (~> 0.5)
   tzinfo-data
