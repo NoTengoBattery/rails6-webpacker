@@ -153,7 +153,7 @@ jobs:
     env:
       NODE_ENV: production
       RAILS_ENV: production
-      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+      #RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -197,7 +197,7 @@ jobs:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       RAILS_ENV: test
-      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+      #RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
     strategy:
       matrix:
         browser: [chrome, firefox]
