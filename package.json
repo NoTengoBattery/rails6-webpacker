@@ -2,6 +2,9 @@
   "name": "website-template",
   "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "eslint": "eslint .",
     "eslint-fix": "eslint --fix .",
@@ -25,7 +28,7 @@
     "postcss": "^8.3",
     "postcss-flexbugs-fixes": "^5.0",
     "postcss-import": "^14.0",
-    "postcss-loader": "^5.3",
+    "postcss-loader": "^6.1",
     "postcss-preset-env": "^6.7",
     "sass": "^1.34",
     "sass-loader": "^12.0",
