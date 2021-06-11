@@ -48,25 +48,24 @@ RSpec.configure do |config|
   # Change the default driver to Selenium Headless
   config.before(:each, type: :system) do
     using_browser = (ENV["USING_BROWSER"] || "chrome").try(:to_sym)
-    driven_by :selenium_headless, using: using_browser
+    driver = ENV["CI"] ? :selenium_headless : :selenium
+    driven_by driver, using: using_browser
 
     # This code will seed the lax-domain cookie that stores the site preferences
-    railsx_config = Rails.application.config.x
     manage = page.driver.browser.manage
-    I18n.locale = railsx_config.default_locale
 
     serial_config = JSON.generate(
       {
-        railsx_config.preference_key_locale => I18n.locale
+        AppConfig::Locale::PREFERENCE_KEY => (I18n.locale = AppConfig::Locale::DEFAULT)
       }
     )
 
     visit root_path
     manage.delete_all_cookies
-    manage.add_cookie(name: railsx_config.peferences_session_cookie, value: CGI.escape(serial_config))
+    manage.add_cookie(name: AppConfig::Cookie::PREFERENCES_STORE, value: CGI.escape(serial_config))
   end
 
   # Set the capybara host URL to the same as the Action Mailer default host
-  app_uri = Rails.application.config.action_mailer.default_url_options
-  Capybara.server_host = app_uri[:host]
+  Capybara.server_host = AppConfig::Config.host.to_s
+  Capybara.server_port = AppConfig::Config.port.to_s if AppConfig::Config.port
 end

@@ -19,6 +19,7 @@ gem "redis", "~> 4.2", ">= 4.2.5", require: ["redis", "redis/connection/hiredis"
 
 # Extra gems required for this project
 gem "annotate", "~> 3.1", ">= 3.1.1"
+gem "aws-sdk-s3", require: false
 gem "devise", "~> 4.8"
 gem "devise-i18n", "~> 1.9", ">= 1.9.4"
 gem "hamlit-rails", "~> 0.2"
@@ -66,6 +67,7 @@ group :development do
 end
 
 group :test do
+  gem "rexml", "~> 3.2", ">= 3.2.5"
   # Adds support for Capybara testing and the Selenium Web Driver
   gem "capybara", "~> 3.35", ">= 3.35.3"
   gem "database_cleaner", "~> 2.0", ">= 2.0.1"

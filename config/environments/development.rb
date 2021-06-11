@@ -76,17 +76,8 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
-  # Add this local domain for running locally without changing the TLD
-  config.hosts << /(?:[a-z0-9]*\.)*localhost\.localdomain/
-
-  # Mailer option for Devise (change the host name in production!)
-  config.action_mailer.default_url_options = {
-    host: "localhost.localdomain",
-    port: ENV.fetch("PORT", 3500)
-  }
-
   config.action_mailer.smtp_settings = {
-    address: "localhost.localdomain",
+    address: AppConfig::Config::LOCAL_HOST,
     port: 1025,
     user_name: "user",
     password: "password"

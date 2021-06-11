@@ -1,0 +1,86 @@
+{
+  "addons": [
+    {
+      "as": "DATABASE",
+      "plan": "heroku-postgresql:hobby-basic"
+    },
+    {
+      "as": "REDIS_DATABASE",
+      "plan": "rediscloud:100"
+    },
+    {
+      "as": "REDIS_CACHE",
+      "plan": "rediscloud:250"
+    },
+    {
+      "plan": "scheduler:standard"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-apt"
+    },
+    {
+      "url": "https://github.com/brandoncc/heroku-buildpack-vips"
+    },
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ],
+  "description": "Ruby on Rails Monolithic Website",
+  "env": {
+    "LANG": {
+      "description": "The default language for the application and environment",
+      "value": "es_GT.UTF-8"
+    }
+  },
+  "environments": {
+    "review": {
+      "addons": [
+        {
+          "as": "DATABASE",
+          "plan": "heroku-postgresql:hobby-dev"
+        },
+        {
+          "as": "REDIS_DATABASE",
+          "plan": "heroku-redis:hobby-dev"
+        },
+        {
+          "as": "REDIS_CACHE",
+          "plan": "rediscloud:30"
+        }
+      ],
+      "env": {
+        "IS_HEROKU_REVIEW": {
+          "description": "Set this variable to identify review apps",
+          "value": "true"
+        },
+        "LANG": {
+          "description": "The default language for the application and environment",
+          "value": "es_GT.UTF-8"
+        }
+      }
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "hobby"
+    }
+  },
+  "keywords": [
+    "Rails",
+    "Stimulus",
+    "Tailwind",
+    "Turbo",
+    "Ruby"
+  ],
+  "name": "website-template",
+  "repository": "git@github.com:NoTengoBattery/rails6-webpacker.git",
+  "stack": "heroku-20",
+  "success_url": "/",
+  "website": "https://website.com"
+}

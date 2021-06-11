@@ -2,12 +2,13 @@ module CookieConfigurable
   extend ActiveSupport::Concern
 
   private
-    def __pref_cookie() = Rails.application.config.x.peferences_session_cookie
+    def __pref_cookie() = AppConfig::Cookie::PREFERENCES_STORE
 
     def __prefs = JSON.parse(cookies.permanent[__pref_cookie] || "{}")
 
     def __prefs=(value)
-      cookies.permanent[__pref_cookie] = { value: JSON.generate(value), domain: :all }
+      cookies.permanent[__pref_cookie] =
+        { value: JSON.generate(value), tld_length: AppConfig::Config.cookie_tld_length, domain: :all }
     end
 
     def local_preference=(params)
@@ -16,7 +17,5 @@ module CookieConfigurable
       self.__prefs = current_prefs
     end
 
-    def local_preference(key)
-      __prefs[key.to_s]
-    end
+    def local_preference(key) = __prefs.[](key.to_s)
 end

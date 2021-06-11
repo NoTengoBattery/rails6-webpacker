@@ -149,10 +149,11 @@ jobs:
   build:
     name: Application build
     runs-on: ubuntu-latest
-    needs: [rubocop, haml-lint, eslint, stylelint, typescript, i18n-tasks]
+    needs: [rubocop, haml-lint, eslint, stylelint, typescript]
     env:
-      RAILS_ENV: production
       NODE_ENV: production
+      RAILS_ENV: production
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -188,7 +189,7 @@ jobs:
   test:
     name: Test suite
     runs-on: ubuntu-latest
-    needs: [build]
+    needs: [rubocop, haml-lint, eslint, stylelint, typescript, i18n-tasks]
     env:
       PGHOST: localhost
       PGPORT: 5432
@@ -196,6 +197,7 @@ jobs:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       RAILS_ENV: test
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
     strategy:
       matrix:
         browser: [chrome, firefox]

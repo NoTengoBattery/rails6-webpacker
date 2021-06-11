@@ -70,6 +70,17 @@ body {
     float: left;
   }
 
+  .locale-button {
+    display: inline;
+
+    input {
+      background: inherit;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+    }
+  }
+
   li::before,
   li:last-child::after {
     content: '|';

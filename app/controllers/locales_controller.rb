@@ -11,7 +11,5 @@ class LocalesController < ApplicationController
   end
 
   private
-    def locale_params
-      params.permit(:locale)
-    end
+    def locale_params() = params.permit(:locale)
 end

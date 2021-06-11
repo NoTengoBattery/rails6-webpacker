@@ -64,15 +64,6 @@ Rails.application.configure do
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 
-  # Add this local domain for testing without changing the TLD
-  config.hosts << /(?:[a-z0-9]*\.)*localhost\.localdomain/
-
   # Do not try to send mails when testing
   config.action_mailer.delivery_method = :test
-
-  # Mailer option for Devise (change the host name in production!)
-  config.action_mailer.default_url_options = {
-    host: "localhost.localdomain",
-    port: ENV.fetch("PORT", 3500)
-  }
 end

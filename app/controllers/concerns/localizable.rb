@@ -5,11 +5,9 @@ module Localizable
   extend ActiveSupport::Concern
 
   private
-    def __locale_key() = Rails.application.config.x.preference_key_locale
+    def __locale_key() = AppConfig::Locale::PREFERENCE_KEY
 
-    def cookie_locale
-      local_preference(__locale_key)&.to_sym
-    end
+    def cookie_locale() = local_preference(__locale_key)&.to_sym
 
     def cookie_locale=(locale)
       self.local_preference = { key: __locale_key, value: locale }

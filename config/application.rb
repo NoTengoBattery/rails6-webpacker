@@ -8,7 +8,7 @@ require "active_record/railtie"
 require "active_storage/engine"
 require "action_controller/railtie"
 require "action_mailer/railtie"
-require "action_mailbox/engine"
+# require "action_mailbox/engine"
 # require "action_text/engine"
 require "action_view/railtie"
 require "action_cable/engine"
@@ -21,6 +21,8 @@ Bundler.require(*Rails.groups)
 
 module WebsiteTemplate
   class Application < Rails::Application
+    require_relative "app_config"
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
@@ -41,12 +43,17 @@ module WebsiteTemplate
     # Configure the Redis cache store
     config.cache_store = :redis_cache_store
 
-    # Share the cookies among all the domains by default
-    config.session_store :cookie_store, key: "_website_demo", domain: :all
+    # Set the host matcher to avoid "Blocked host" errors
+    config.hosts += AppConfig::Config.host_matcher
+    config.action_dispatch.tld_length = AppConfig::Config.tld_length
 
-    # Custom configurations for this application
-    config.x.peferences_session_cookie = :_preferences
-    config.x.preference_key_locale = :locale
-    config.x.default_locale = :es
+    # Action Mailer configuration for generating URLs when sending emails
+    config.action_mailer.default_url_options = { host: AppConfig::Config.host }
+    config.action_mailer.default_url_options[:port] = AppConfig::Config.port  if AppConfig::Config.port
+
+    # Share the cookies among all the domains by default"
+    config.session_store :cookie_store, key: AppConfig::Cookie::SESSION_STORE,
+                                        tld_length: AppConfig::Config.cookie_tld_length,
+                                        domain: :all
   end
 end
