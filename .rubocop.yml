@@ -84,5 +84,8 @@ Style:
   Enabled: true
 Style/Documentation:
   Enabled: false
+Style/NumericLiterals:
+  Exclude:
+    - "db/**/*"
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
