@@ -1,15 +1,19 @@
 {
   "addons": [
     {
-      "as": "DATABASE",
-      "plan": "heroku-postgresql:hobby-basic"
+      "as": "AMAZON",
+      "plan": "bucketeer:standard"
     },
     {
-      "as": "REDIS_DATABASE",
-      "plan": "rediscloud:100"
+      "as": "DATABASE",
+      "plan": "heroku-postgresql:standard-0"
     },
     {
       "as": "REDIS_CACHE",
+      "plan": "rediscloud:500"
+    },
+    {
+      "as": "REDIS_DATABASE",
       "plan": "rediscloud:250"
     },
     {
@@ -31,15 +35,13 @@
     }
   ],
   "description": "Ruby on Rails Monolithic Website",
-  "env": {
-    "LANG": {
-      "description": "The default language for the application and environment",
-      "value": "es_GT.UTF-8"
-    }
-  },
   "environments": {
     "review": {
       "addons": [
+        {
+          "as": "AMAZON",
+          "plan": "bucketeer:hobbyist"
+        },
         {
           "as": "DATABASE",
           "plan": "heroku-postgresql:hobby-dev"
@@ -57,18 +59,20 @@
         "IS_HEROKU_REVIEW": {
           "description": "Set this variable to identify review apps",
           "value": "true"
-        },
-        "LANG": {
-          "description": "The default language for the application and environment",
-          "value": "es_GT.UTF-8"
+        }
+      },
+      "formation": {
+        "web": {
+          "quantity": 1,
+          "size": "free"
         }
       }
     }
   },
   "formation": {
     "web": {
-      "quantity": 1,
-      "size": "hobby"
+      "quantity": 2,
+      "size": "standard-1x"
     }
   },
   "keywords": [
@@ -82,5 +86,5 @@
   "repository": "git@github.com:NoTengoBattery/rails6-webpacker.git",
   "stack": "heroku-20",
   "success_url": "/",
-  "website": "https://website.com"
+  "website": "https://www.notengobattery.com"
 }

@@ -1,7 +1,7 @@
 require "localizable"
+require "http_authenticable"
 
 class ApplicationController < ActionController::Base
   include Localizable
-
-  before_action :configure_locale
+  include HttpAuthenticable
 end

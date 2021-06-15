@@ -46,6 +46,7 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Exclude:
     - "db/**/*"
+    - "spec/**/*"
   Max: 60
 Metrics/MethodLength:
   Exclude:

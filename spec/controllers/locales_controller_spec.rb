@@ -2,72 +2,76 @@ require "rails_helper"
 require "shared_rutines"
 
 RSpec.describe LocalesController, type: :controller do
-  include Localizable
+  include CookieConfigurable
+  let(:default) { :es }
+  let(:supported) { %i[en en-US es] }
+  let(:store) { AppConfig::Cookie::PREFERENCES_STORE }
+  let(:locale_key) { AppConfig::Locale::PREFERENCE_KEY }
 
   describe "#default_locale" do
     before do
-      I18n.default_locale = :en
-      I18n.available_locales = %i[en en-US es]
-      self.cookie_locale = nil
+      I18n.default_locale = default
+      I18n.available_locales = supported
       request.headers["Accept-Language"] = nil
+      cookies.delete store
     end
 
     it "sets the default locale without hints" do
       put :default_locale
-      expect(cookie_locale).to eq(I18n.default_locale)
+      expect(local_preference(locale_key)).to eq(I18n.default_locale)
     end
 
     it "sets the default locale with broser hints" do
       request.headers["Accept-Language"] = "es;q=1.0"
       put :default_locale
-      expect(cookie_locale).to eq(:es)
+      expect(local_preference(locale_key)).to eq(:es)
     end
   end
 
   describe "#site_locale" do
     before do
-      I18n.default_locale = :en
-      I18n.available_locales = %i[en en-US es]
-      self.cookie_locale = nil
+      I18n.default_locale = default
+      I18n.available_locales = supported
+      cookies.delete store
     end
 
     it "sets a simple locale from the supported list" do
       patch :site_locale, params: { locale: :es }
-      expect(cookie_locale).to eq(:es)
+      expect(local_preference(locale_key)).to eq(:es)
     end
 
     it "sets a composed locale from the supported list" do
       patch :site_locale, params: { locale: :"en-US" }
-      expect(cookie_locale).to eq(:"en-US")
+      expect(local_preference(locale_key)).to eq(:"en-US")
     end
 
     it "sets a simple locale from a partially supported composed locale" do
       patch :site_locale, params: { locale: :"es-GT" }
-      expect(cookie_locale).to eq(:es)
+      expect(local_preference(locale_key)).to eq(:es)
     end
 
     it "sets a default locale from an unsupported locale" do
       request.headers["Accept-Language"] = nil
       patch :site_locale, params: { locale: :ru }
-      expect(cookie_locale).to eq(I18n.default_locale)
+      expect(local_preference(locale_key)).to eq(I18n.default_locale)
     end
 
     it "sets a browser-prefered simple locale from an unsupported locale" do
       request.headers["Accept-Language"] = "es;q=1.0"
       patch :site_locale, params: { locale: :ru }
-      expect(cookie_locale).to eq(:es)
+      expect(local_preference(locale_key)).to eq(:es)
     end
 
     it "sets a browser-prefered composed locale from an unsupported locale" do
       request.headers["Accept-Language"] = "es-GT;q=1.0"
       patch :site_locale, params: { locale: :ru }
-      expect(cookie_locale).to eq(:es)
+      expect(local_preference(locale_key)).to eq(:es)
     end
 
     it "changes the locale after it's set" do
       patch :site_locale, params: { locale: :"en-US" }
       patch :site_locale, params: { locale: :es }
-      expect(cookie_locale).to eq(:es)
+      expect(local_preference(locale_key)).to eq(:es)
     end
   end
 end

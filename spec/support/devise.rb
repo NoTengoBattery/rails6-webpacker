@@ -6,6 +6,6 @@ RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :helper
   config.include Devise::Test::IntegrationHelpers, type: :model
   config.include Devise::Test::IntegrationHelpers, type: :request
-  config.include Devise::Test::IntegrationHelpers, type: :route
+  config.include Devise::Test::IntegrationHelpers, type: :routing
   config.include Devise::Test::IntegrationHelpers, type: :view
 end

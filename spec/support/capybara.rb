@@ -53,16 +53,12 @@ RSpec.configure do |config|
 
     # This code will seed the lax-domain cookie that stores the site preferences
     manage = page.driver.browser.manage
-
-    serial_config = JSON.generate(
-      {
-        AppConfig::Locale::PREFERENCE_KEY => (I18n.locale = AppConfig::Locale::DEFAULT)
-      }
-    )
-
+    config_hash = {
+      AppConfig::Locale::PREFERENCE_KEY => (I18n.locale = AppConfig::Locale::DEFAULT)
+    }
     visit root_path
     manage.delete_all_cookies
-    manage.add_cookie(name: AppConfig::Cookie::PREFERENCES_STORE, value: CGI.escape(serial_config))
+    manage.add_cookie(name: AppConfig::Cookie::PREFERENCES_STORE, value: CookieConfigurable.encode(config_hash))
   end
 
   # Set the capybara host URL to the same as the Action Mailer default host

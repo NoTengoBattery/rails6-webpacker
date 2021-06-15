@@ -4,6 +4,8 @@ module Localizable
   include CookieConfigurable
   extend ActiveSupport::Concern
 
+  included { before_action :configure_locale }
+
   private
     def __locale_key() = AppConfig::Locale::PREFERENCE_KEY
 
