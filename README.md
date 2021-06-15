@@ -2,6 +2,8 @@
 
 This is a template designed to speed-up project lifting time. It's designed to use the best CI principles and to be automatically deployable to Heroku. With this template, developers can spend more time working on new projects than configuring every aspect of them.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Perks
 
   - A very thorough CI pipeline (workflow) that runs linters and automated tests. With good code coverage, it guarantees that no undeployable code will pass the CI tests. Perfect fit for automatic deployment.
