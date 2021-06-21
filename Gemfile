@@ -57,7 +57,7 @@ group :development do
   # Rubocop linter gems for linting the source code during development
   gem "rubocop-faker", "~> 1.1", require: false
   gem "rubocop-i18n", "~> 3.0", require: false
-  gem "rubocop-rails_config", "~> 1.5", ">= 1.5.3", require: false
+  gem "rubocop-rails_config", "~> 1.5", require: false
   gem "rubocop-rake", "~> 0.5", require: false
   gem "rubocop-rspec", "~> 2.3", require: false
   # This gem makes internationalization easier
