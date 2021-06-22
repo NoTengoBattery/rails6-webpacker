@@ -22,7 +22,7 @@ gem "annotate", "~> 3.1", ">= 3.1.1"
 gem "aws-sdk-s3", require: false
 gem "bson", "~> 4.12", ">= 4.12.1"
 gem "devise", "~> 4.8"
-gem "devise-i18n", "~> 1.9", ">= 1.9.4"
+gem "devise-i18n", "~> 1.10"
 gem "hamlit-rails", "~> 0.2"
 gem "image_processing", "~> 1.12", ">= 1.12.1"
 gem "irb", "~> 1.3", ">= 1.3.5"
