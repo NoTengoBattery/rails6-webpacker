@@ -54,7 +54,7 @@ RSpec.configure do |config|
     # This code will seed the lax-domain cookie that stores the site preferences
     manage = page.driver.browser.manage
     config_hash = {
-      AppConfig::Locale::PREFERENCE_KEY => (I18n.locale = AppConfig::Locale::DEFAULT)
+      AppConfig::Locale::PREFERENCE_KEY => I18n.with_locale { AppConfig::Locale::DEFAULT }
     }
     visit root_path
     manage.delete_all_cookies
