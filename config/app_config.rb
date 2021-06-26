@@ -2,7 +2,7 @@ module AppConfig
   class Config
     CODE_FRIENDLY_DOMAIN = :website_com
     LOCAL_HOST = :"localhost.localdomain"
-    LOCAL_PORT = 3500
+    LOCAL_PORT = 5000
     PRODUCTION_HOST = :"website.com"
     PRODUCTION_TLD_LENGHT = 1
     REVIEW = :review

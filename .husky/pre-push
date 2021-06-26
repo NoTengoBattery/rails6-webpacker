@@ -1,0 +1,26 @@
+#!/bin/bash
+. "$(dirname "$0")/_/husky.sh"
+
+MY_NAME=$(basename "$0")
+
+_fail() {
+  ECODE=$?
+  printf "~~> $MY_NAME: $NAME: aborting...\n"
+  exit $ECODE
+}
+
+run_hook() {
+  command=("$@")
+  printf "~~> $MY_NAME: $NAME: running hook...\n"
+  "${command[@]}" || _fail
+  printf "~~> $MY_NAME: $NAME: hook executed successfully\n"
+}
+
+NAME="Rubocop" run_hook bundle exec rubocop -A --color
+NAME="ESLint" run_hook yarn eslint-fix .
+NAME="TypeScript" run_hook yarn tsc
+NAME="HAML lint" run_hook bundle exec haml-lint --color
+NAME="Stylelint" run_hook yarn stylelint-fix '**/*.@(sa|sc|c)ss'
+NAME="I18n Normalize" run_hook bundle exec i18n-tasks normalize
+NAME="I18n Health" run_hook bundle exec i18n-tasks health
+NAME="RSpec" run_hook bundle exec rspec --force-color --format documentation

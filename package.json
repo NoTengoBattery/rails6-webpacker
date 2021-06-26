@@ -7,16 +7,17 @@
   },
   "scripts": {
     "eslint": "eslint .",
-    "eslint-fix": "eslint --fix .",
-    "stylelint": "stylelint '**/**.{sass,scss,css}'",
-    "stylelint-fix": "stylelint --fix '**/**.{sass,scss,css}'",
-    "tsc": "tsc --pretty"
+    "eslint-fix": "eslint --fix",
+    "prepare": "husky install",
+    "stylelint": "stylelint '**/*.@(sa|sc|c)ss'",
+    "stylelint-fix": "stylelint --fix",
+    "tsc": "tsc --pretty --project ."
   },
   "dependencies": {
     "@babel/core": "^7.14",
     "@babel/preset-typescript": "^7.13",
     "@fontsource/jetbrains-mono": "^4.4",
-    "@hotwired/turbo-rails": "7.0.0-beta.6",
+    "@hotwired/turbo-rails": "7.0.0-beta.7",
     "@iconify/iconify": "^2.0",
     "@rails/actioncable": "^6.1",
     "@rails/activestorage": "^6.1",
@@ -30,11 +31,11 @@
     "postcss-import": "^14.0",
     "postcss-loader": "^6.1",
     "postcss-preset-env": "^6.7",
-    "sass": "^1.34",
+    "sass": "^1.35",
     "sass-loader": "^12.0",
     "stimulus": "^2.0",
     "tailwindcss": "^2.1",
-    "webpack": "^5.38",
+    "webpack": "^5.39",
     "webpack-cli": "^4.7"
   },
   "devDependencies": {
@@ -51,10 +52,11 @@
     "eslint-plugin-import": "^2.23",
     "eslint-plugin-node": "^11.1",
     "eslint-plugin-promise": "^5.1",
+    "husky": "^6.0",
     "stylelint": "^13.13",
     "stylelint-config-sass-guidelines": "^8.0",
     "typescript": "^4.3",
-    "webpack-dev-server": "4.0.0-beta.3"
+    "webpack-dev-server": "^3.11"
   },
   "babel": {
     "presets": [

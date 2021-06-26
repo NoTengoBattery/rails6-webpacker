@@ -1,0 +1,39 @@
+#!/bin/bash
+. "$(dirname "$0")/_/husky.sh"
+shopt -s extglob
+
+MY_NAME=$(basename "$0")
+mapfile -t GIT_FILES < <(git diff --diff-filter=d --cached --name-only)
+
+_fail() {
+  ECODE=$?
+  printf "~~> $MY_NAME: $NAME: aborting...\n"
+  exit $ECODE
+}
+
+run_hook() {
+  if [ "0$Q" -eq 0 ]; then return 0; fi
+  command=("$@")
+  printf "~~> $MY_NAME: $NAME: running hook...\n"
+  "${command[@]}" || _fail
+  printf "~~> $MY_NAME: $NAME: hook executed successfully\n"
+}
+
+for cached_file in "${GIT_FILES[@]}"; do
+  case "$cached_file" in
+    *.rb) RUBY+=("$cached_file"); RBF=1; ;;
+    *.js) JS+=("$cached_file"); JSF=1; ;;
+    *.ts) TS+=("$cached_file"); TSF=1; ;;
+    *.haml) HAML+=("$cached_file"); HLF=1; ;;
+    *.@(sa|sc|c)ss) SASS+=("$cached_file"); CSF=1; ;;
+    locales/*.yml) LCF=1; ;;
+    *) : ;;
+  esac
+done
+ESF=$((JSF + TSF))
+
+NAME="Rubocop" Q=$RBF run_hook bundle exec rubocop -A --color "${RUBY[@]}"
+NAME="ESLint" Q=$ESF run_hook yarn eslint-fix "${JS[@]}" "${TS[@]}"
+NAME="HAML lint" Q=$HLF run_hook bundle exec haml-lint --color "${HAML[@]}"
+NAME="Stylelint" Q=$CSF run_hook yarn stylelint-fix "${SASS[@]}"
+NAME="I18n Normalize" Q=$LCF run_hook bundle exec i18n-tasks normalize
