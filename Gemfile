@@ -18,7 +18,6 @@ gem "hiredis", "~> 0.6"
 gem "redis", "~> 4.2", ">= 4.2.5", require: ["redis", "redis/connection/hiredis"]
 
 # Extra gems required for this project
-gem "annotate", "~> 3.1", ">= 3.1.1"
 gem "aws-sdk-s3", require: false
 gem "bson", "~> 4.12", ">= 4.12.1"
 gem "devise", "~> 4.8"
@@ -35,6 +34,7 @@ gem "rest-client", "~> 2.1"
 gem "bootsnap", "~> 1.7", ">= 1.7.5", require: false
 
 group :development, :test do
+  gem "annotate", "~> 3.1", ">= 3.1.1"
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   # Add this to both development and test to take advantage of the generators
@@ -49,9 +49,6 @@ group :development do
   gem "listen", "~> 3.5", ">= 3.5.1"
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem "web-console", "~> 4.1"
-  # Display performance information such as SQL time and flame graphs for each request in your browser.
-  # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem "rack-mini-profiler", "~> 2.3", ">= 2.3.2"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring", "~> 2.1", ">= 2.1.1"
   # Rubocop linter gems for linting the source code during development
@@ -65,6 +62,9 @@ group :development do
   # Gems for improving development quality
   gem "haml_lint", "~> 0.37", require: false
   gem "solargraph", "~> 0.40", require: false
+  # Display performance information such as SQL time and flame graphs for each request in your browser.
+  # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
+  gem "rack-mini-profiler", "~> 2.3", ">= 2.3.2"
 end
 
 group :test do

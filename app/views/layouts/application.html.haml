@@ -1,13 +1,15 @@
 !!!
 %html{ lang: I18n.locale }
   %head
-    %title Website Template
+    %title= with_brand(content_for(:page_title)) || t("site_name")
     %meta{ content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type" }
     %meta{ content: "width=device-width,initial-scale=1", name: "viewport" }
+    %meta{ name: "robots", content: content_for(:robots) || "all" }
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_pack_tag "styles/application", media: "all", "data-turbo-track": "reload", "data-turbo-eval": false
     = stylesheet_pack_tag "styles/placeholder", media: "all", "data-turbo-track": "reload", "data-turbo-eval": false
+    = stylesheet_pack_tag "styles/tailwind", media: "all", "data-turbo-track": "reload", "data-turbo-eval": false
     = javascript_pack_tag "application", "data-turbo-track": "reload", "data-turbo-eval": false
   %body
     = yield
