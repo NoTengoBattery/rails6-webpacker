@@ -33,6 +33,10 @@ gem "rest-client", "~> 2.1"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", "~> 1.7", ">= 1.7.5", require: false
 
+# Display performance information such as SQL time and flame graphs for each request in your browser.
+# Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
+gem "rack-mini-profiler", "~> 2.3", ">= 2.3.2", require: false
+
 group :development, :test do
   gem "annotate", "~> 3.1", ">= 3.1.1"
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -62,9 +66,6 @@ group :development do
   # Gems for improving development quality
   gem "haml_lint", "~> 0.37", require: false
   gem "solargraph", "~> 0.40", require: false
-  # Display performance information such as SQL time and flame graphs for each request in your browser.
-  # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem "rack-mini-profiler", "~> 2.3", ">= 2.3.2"
 end
 
 group :test do

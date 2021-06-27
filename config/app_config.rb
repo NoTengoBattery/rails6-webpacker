@@ -3,6 +3,7 @@ module AppConfig
     CODE_FRIENDLY_DOMAIN = :website_com
     LOCAL_HOST = :"localhost.localdomain"
     LOCAL_PORT = 5000
+    LOCAL_TEST_PORT = 3600
     PRODUCTION_HOST = :"website.com"
     PRODUCTION_TLD_LENGHT = 1
     REVIEW = :review
@@ -13,6 +14,7 @@ module AppConfig
     IS_PRODUCTION = Rails.env.production?
     IS_REVIEW = IS_PRODUCTION && ENV["IS_HEROKU_REVIEW"]
     IS_STAGING = IS_PRODUCTION && ENV["IS_HEROKU_STAGING"]
+    IS_TESTING = Rails.env.test?
     REVIEW_HOST = :"#{REVIEW}.#{self::PRODUCTION_HOST}"
     STAGING_HOST = :"#{STAGING}.#{self::PRODUCTION_HOST}"
 
@@ -36,6 +38,7 @@ module AppConfig
 
     def self.port
       return nil if self::IS_REVIEW || self::IS_STAGING || self::IS_PRODUCTION
+      return LOCAL_TEST_PORT if self::IS_TESTING
 
       LOCAL_PORT
     end
