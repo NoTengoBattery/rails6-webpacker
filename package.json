@@ -44,7 +44,7 @@
     "@types/rails__activestorage": "^6",
     "@types/rails__ujs": "^6",
     "@types/webpack-env": "^1.16",
-    "@typescript-eslint/eslint-plugin": "^4.25",
+    "@typescript-eslint/eslint-plugin": "^4.28",
     "@typescript-eslint/parser": "^4.25",
     "@webpack-cli/serve": "^1.4",
     "eslint": "^7.27",
