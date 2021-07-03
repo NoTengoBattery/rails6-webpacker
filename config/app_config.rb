@@ -1,22 +1,24 @@
 module AppConfig
   class Config
-    CODE_FRIENDLY_DOMAIN = :website_com
+    FRIENDLY_HOST = :website_com
     LOCAL_HOST = :"localhost.localdomain"
-    LOCAL_PORT = 5000
-    LOCAL_TEST_PORT = 3600
     PRODUCTION_HOST = :"website.com"
     PRODUCTION_TLD_LENGHT = 1
-    REVIEW = :review
     REVIEW_TLD_LENGTH = 2
-    STAGING = :staging
     STAGING_TLD_LENGTH = 2
+    LOCAL_PORT = 5000
+    LOCAL_TEST_PORT = rand(3600..3700)
+    REVIEW = :review
+    STAGING = :staging
 
     IS_PRODUCTION = Rails.env.production?
     IS_REVIEW = IS_PRODUCTION && ENV["IS_HEROKU_REVIEW"]
     IS_STAGING = IS_PRODUCTION && ENV["IS_HEROKU_STAGING"]
     IS_TESTING = Rails.env.test?
     REVIEW_HOST = :"#{REVIEW}.#{self::PRODUCTION_HOST}"
+    REVIEW_NAMESPACE = :"#{REVIEW}_#{self::FRIENDLY_HOST}"
     STAGING_HOST = :"#{STAGING}.#{self::PRODUCTION_HOST}"
+    STAGING_NAMESPACE = :"#{STAGING}_#{self::FRIENDLY_HOST}"
 
     def self.host
       return self::REVIEW_HOST if self::IS_REVIEW
@@ -29,11 +31,19 @@ module AppConfig
     def self.host_matcher
       hosts_to_match = [host]
       hosts_to_match << LOCAL_HOST
-      hosts_to_match << "herokuapp.com"
+      hosts_to_match << :"herokuapp.com"
 
       hosts_to_match.map do |host|
         /^(?:[[:graph:]]+\.?)*#{Regexp.quote(host)}/
       end
+    end
+
+    def self.namespace
+      return self::REVIEW_NAMESPACE if self::IS_REVIEW
+      return self::STAGING_NAMESPACE if self::IS_STAGING
+      return self::FRIENDLY_HOST if self::IS_PRODUCTION
+
+      FRIENDLY_HOST
     end
 
     def self.port
@@ -51,7 +61,7 @@ module AppConfig
       1
     end
 
-    def self.cookie_tld_length() = (tld_length + 1).to_s
+    def self.cookie_tld_length() = (tld_length + 1)
   end
 
   class Cookie
@@ -61,11 +71,11 @@ module AppConfig
       return AppConfig::Config::REVIEW if AppConfig::Config::IS_REVIEW
       return AppConfig::Config::STAGING if AppConfig::Config::IS_STAGING
 
-      ""
+      :""
     end
 
     PREFERENCES_STORE = :"_#{cookie_pre}_#{self::PREFERENCES}"
-    SESSION_STORE = :"_#{cookie_pre}_#{AppConfig::Config::CODE_FRIENDLY_DOMAIN}"
+    SESSION_STORE = :"_#{cookie_pre}_#{AppConfig::Config::FRIENDLY_HOST}"
   end
 
   class Locale

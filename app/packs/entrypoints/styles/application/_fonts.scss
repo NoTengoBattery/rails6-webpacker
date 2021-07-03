@@ -1,0 +1,3 @@
+@use '@fontsource/jetbrains-mono/scss/mixins' as JB;
+
+@include JB.fontFaceVariable($fontName: 'JetBrains Mono');

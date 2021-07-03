@@ -25,10 +25,12 @@ if (process.env.NODE_ENV === 'production') {
         './app/helpers/**/*.rb',
         './app/packs/**/*.js',
         './app/packs/**/*.jsx',
-        './app/packs/**/*.ts'
+        './app/packs/**/*.ts',
+        './config/initializers/**/*.rb'
       ],
-      defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
-    })
+      defaultExtractor: content => content.match(/(?:(?<=[.%<])[\w-/:]+|(?<=[ "'[])[\w-/:]+[\w-./:]*)(?<!:)/g) || []
+    }),
+    require('cssnano')
   )
 }
 

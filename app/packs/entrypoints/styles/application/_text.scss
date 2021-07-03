@@ -1,3 +1,7 @@
 code {
   @apply font-bold text-main-900 #{!important};
 }
+
+h1 {
+  @apply font-medium text-2xl #{!important};
+}

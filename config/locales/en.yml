@@ -2,5 +2,7 @@
 en:
   contact: Contact
   message_here: Please write your message in this space. Thanks.
-  site_name: Website Template
+  misc:
+    http_auth_greeting: Please enter your credentials
+  site_name: NoTengoBattery
   under_construction: "<p>Under construction...</"

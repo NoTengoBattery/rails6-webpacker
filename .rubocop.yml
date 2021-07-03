@@ -47,7 +47,7 @@ Metrics/BlockLength:
   Exclude:
     - "db/**/*"
     - "spec/**/*"
-  Max: 60
+  Max: 40
 Metrics/MethodLength:
   Exclude:
     - "db/**/*"
@@ -55,6 +55,10 @@ Migration:
   Enabled: true
 Naming:
   Enabled: true
+Naming/InclusiveLanguage:
+  Exclude:
+    - "Gemfile"
+    - "config/environments/production.rb"
 Packaging:
   Enabled: true
 Performance:

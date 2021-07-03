@@ -2,5 +2,7 @@
 es:
   contact: Contacto
   message_here: Por favor, escriba su mensaje en este espacio. Gracias.
-  site_name: Website Template
+  misc:
+    http_auth_greeting: Por favor, escriba sus credenciales
+  site_name: NoTengoBattery
   under_construction: "<p>En construcción...</"

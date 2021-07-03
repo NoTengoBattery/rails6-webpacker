@@ -26,7 +26,6 @@ for cached_file in "${GIT_FILES[@]}"; do
     *.ts) TS+=("$cached_file"); TSF=1; ;;
     *.haml) HAML+=("$cached_file"); HLF=1; ;;
     *.@(sa|sc|c)ss) SASS+=("$cached_file"); CSF=1; ;;
-    locales/*.yml) LCF=1; ;;
     *) : ;;
   esac
 done
@@ -36,4 +35,4 @@ NAME="Rubocop" Q=$RBF run_hook bundle exec rubocop -A --color "${RUBY[@]}"
 NAME="ESLint" Q=$ESF run_hook yarn eslint-fix "${JS[@]}" "${TS[@]}"
 NAME="HAML lint" Q=$HLF run_hook bundle exec haml-lint --color "${HAML[@]}"
 NAME="Stylelint" Q=$CSF run_hook yarn stylelint-fix "${SASS[@]}"
-NAME="I18n Normalize" Q=$LCF run_hook bundle exec i18n-tasks normalize
+NAME="I18n Normalize" Q=1 run_hook bundle exec i18n-tasks normalize

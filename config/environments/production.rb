@@ -113,8 +113,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: AppConfig::Config::LOCAL_HOST,
     port: 1025,
-    user_name: "user",
-    password: "password"
+    user_name: :user,
+    password: :password
   }
 
   # Use Amazon Web Serivices for online storage (on production)

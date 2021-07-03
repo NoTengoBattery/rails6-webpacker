@@ -9,7 +9,8 @@ module HttpAuthenticable
     def basic_http_authenticate
       return unless AppConfig::Config::IS_REVIEW || AppConfig::Config::IS_STAGING
 
-      authenticate_or_request_with_http_basic("Administration") do |username, password|
+      greeting = I18n.transliterate(I18n.t("misc.http_auth_greeting"))
+      authenticate_or_request_with_http_basic(greeting) do |username, password|
         Rails.application.credentials.http_basic[:username] == username &&
           Rails.application.credentials.http_basic[:password] == password
       end

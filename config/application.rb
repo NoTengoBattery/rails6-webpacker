@@ -41,7 +41,7 @@ module WebsiteTemplate
     config.active_storage.variant_processor = :vips
 
     # Configure the Redis cache store
-    config.cache_store = :redis_cache_store
+    config.cache_store = :redis_cache_store, { url: ENV["REDIS_CACHE_URL"], namespace: AppConfig::Config.namespace }
 
     # Set the host matcher to avoid "Blocked host" errors
     config.hosts += AppConfig::Config.host_matcher

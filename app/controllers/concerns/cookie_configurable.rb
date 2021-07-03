@@ -1,13 +1,16 @@
 module CookieConfigurable
   extend ActiveSupport::Concern
-  # Alright, encoding and decoding this cookie is weird (to say the least). But it leads a nice, tiddy and untamperable
-  # cookie without caring about a digest or a signature. In the end, this cookie should not be encryped. It's just some
-  # preferences.
 
-  def self.encode(cookie = {}) = CGI.escape(Base64.encode64(Zlib.deflate(cookie.to_bson.to_s)))
+  def self.encode(cookie = {})
+    Rails.cache.fetch(CacheKey.gen!(cookie)) do
+      Base64.urlsafe_encode64(Zlib.deflate(cookie.to_bson.to_s), padding: false)
+    end
+  end
 
   def self.decode(cookie)
-    Hash.from_bson(BSON::ByteBuffer.new(Zlib.inflate(Base64.decode64(CGI.unescape(cookie)))))
+    Rails.cache.fetch(CacheKey.gen!(cookie)) do
+      Hash.from_bson(BSON::ByteBuffer.new(Zlib.inflate(Base64.urlsafe_decode64(cookie))))
+    end
   rescue StandardError
     {}
   end

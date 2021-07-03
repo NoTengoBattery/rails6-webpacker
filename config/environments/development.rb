@@ -27,10 +27,9 @@ Rails.application.configure do
   # Run rails dev:cache to toggle caching.
   if Rails.root.join("tmp", "caching-dev.txt").exist?
     config.action_controller.perform_caching = true
-    config.action_view.cache_template_loading = true
     config.action_controller.enable_fragment_cache_logging = true
 
-    config.cache_store = :file_store, Rails.root.join("tmp/cache-store")
+    config.cache_store = :file_store, Rails.root.join("tmp", "cache-store")
     config.public_file_server.headers = {
       "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
@@ -42,6 +41,9 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
+
+  # Include generic and useful information about system operation.
+  config.log_level = :info
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -63,7 +65,7 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
 
   # Raises error for missing translations.
-  # config.i18n.raise_on_missing_translations = true
+  config.i18n.raise_on_missing_translations = true
 
   # Annotate rendered view with file names.
   config.action_view.annotate_rendered_view_with_filenames = true
@@ -78,7 +80,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: AppConfig::Config::LOCAL_HOST,
     port: 1025,
-    user_name: "user",
-    password: "password"
+    user_name: :user,
+    password: :password
   }
 end
