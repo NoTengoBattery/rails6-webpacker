@@ -7,5 +7,6 @@ let production = merge({})
 const terserPlugin = require('./terser')
 webpackConfig.optimization.minimizer = []
 production = merge(production, terserPlugin)
+production = merge(production, { devtool: 'nosources-source-map' })
 
 module.exports = merge(webpackConfig, production)

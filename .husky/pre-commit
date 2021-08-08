@@ -1,38 +1,32 @@
-#!/bin/bash
+#!/bin/sh
+[ -z $WITH_SHELL ] && WITH_SHELL=/bin/sh exec /bin/sh "$0" "$@"
+
+export MY_NAME=$(basename "$0")
 . "$(dirname "$0")/_/husky.sh"
-shopt -s extglob
+. "$(dirname "$0")/_hooks.sh"
 
-MY_NAME=$(basename "$0")
-mapfile -t GIT_FILES < <(git diff --diff-filter=d --cached --name-only)
+# Small introduction of how this works:
+# 1. The GIT_FILES variable contains all files that are stagged for the commit
+# 2. The loop will match a glob and store the files in a exported global variable
+# 3. When the loop finishes, the hook will run using a special function called run_hook
+#   - The FOR variable determines the file list that will append at the end of the command
+#   - The run_hook accepts a command with its arguments, such as "yarn eslint"
+#   - So, if the line says FOR=LINT run_hook yarn lint, and LINT has a file "app/javascript/test.js"...
+#     ... it will run as follows: yarn lint app/javascript/test.js
+printf "%s\n" "$GIT_FILES" | { while IFS= read -r staged; do
+    case "$staged" in
+      *.rb|*.rake)         add_file "$staged" Rubocop   ;;
+      *.js|*.jsx)          add_file "$staged" ESLint    ;;
+      *.ts|*.tsx)          add_file "$staged" ESLint; add_file "$staged" TSC ;;
+      *.haml)              add_file "$staged" HamlLint  ;;
+      *.sass|*.scss|*.css) add_file "$staged" StyleLint ;;
+      *) : ;;
+    esac
+  done
 
-_fail() {
-  ECODE=$?
-  printf "~~> $MY_NAME: $NAME: aborting...\n"
-  exit $ECODE
+  FOR=Rubocop RUBOCOP_ENFORCE=yes run_hook bundle exec rubocop
+  FOR=ESLint run_hook yarn eslint
+  FOR=TSC run_hook yarn tsc
+  FOR=HamlLint run_hook bundle exec haml-lint
+  FOR=StyleLint run_hook yarn stylelint
 }
-
-run_hook() {
-  if [ "0$Q" -eq 0 ]; then return 0; fi
-  command=("$@")
-  printf "~~> $MY_NAME: $NAME: running hook...\n"
-  "${command[@]}" || _fail
-  printf "~~> $MY_NAME: $NAME: hook executed successfully\n"
-}
-
-for cached_file in "${GIT_FILES[@]}"; do
-  case "$cached_file" in
-    *.rb) RUBY+=("$cached_file"); RBF=1; ;;
-    *.js) JS+=("$cached_file"); JSF=1; ;;
-    *.ts) TS+=("$cached_file"); TSF=1; ;;
-    *.haml) HAML+=("$cached_file"); HLF=1; ;;
-    *.@(sa|sc|c)ss) SASS+=("$cached_file"); CSF=1; ;;
-    *) : ;;
-  esac
-done
-ESF=$((JSF + TSF))
-
-NAME="Rubocop" Q=$RBF run_hook bundle exec rubocop -A --color "${RUBY[@]}"
-NAME="ESLint" Q=$ESF run_hook yarn eslint-fix "${JS[@]}" "${TS[@]}"
-NAME="HAML lint" Q=$HLF run_hook bundle exec haml-lint --color "${HAML[@]}"
-NAME="Stylelint" Q=$CSF run_hook yarn stylelint-fix "${SASS[@]}"
-NAME="I18n Normalize" Q=1 run_hook bundle exec i18n-tasks normalize
