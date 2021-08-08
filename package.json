@@ -17,6 +17,7 @@
     "@babel/core": "^7.14",
     "@babel/preset-typescript": "^7.13",
     "@fontsource/jetbrains-mono": "^4.4",
+    "@fullhuman/postcss-purgecss": "^4.0.3",
     "@hotwired/turbo-rails": "7.0.0-beta.8",
     "@iconify/iconify": "^2.0",
     "@rails/actioncable": "^6.1",
