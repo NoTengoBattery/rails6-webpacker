@@ -44,7 +44,7 @@ group :development, :test do
   # Add this to both development and test to take advantage of the generators
   gem "factory_bot_rails", "~> 6.2"
   gem "faker", "~> 2.18"
-  gem "rspec-rails", "~> 5.0", ">= 5.0.1"
+  gem "rspec-rails", "~> 5.0"
   # Helper to avoid N+1 and unused eager loads
   gem "bullet", "~> 6.1", ">= 6.1.4"
 end
