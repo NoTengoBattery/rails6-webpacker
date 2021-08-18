@@ -16,10 +16,10 @@ run_hook() {
   printf "~~> $MY_NAME: $NAME: hook executed successfully\n"
 }
 
-NAME="Rubocop" run_hook bundle exec rubocop
-NAME="ESLint" run_hook yarn eslint .
+NAME="Rubocop" run_hook bundle exec rubocop --color --parallel
+NAME="ESLint" run_hook yarn eslint --color .
 NAME="TypeScript" run_hook yarn tsc-full
-NAME="HAML lint" run_hook bundle exec haml-lint
-NAME="Stylelint" run_hook yarn stylelint '**/*.@(sa|sc|c)ss'
+NAME="HAML lint" run_hook bundle exec haml-lint --color --parallel
+NAME="Stylelint" run_hook yarn stylelint-all --color
 NAME="I18n Health" run_hook bundle exec i18n-tasks health
-NAME="RSpec" run_hook bundle exec rspec --format documentation
+NAME="RSpec" run_hook bundle exec rspec --force-color --format documentation

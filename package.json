@@ -8,6 +8,7 @@
   "scripts": {
     "eslint-fix": "eslint --fix",
     "prepare": "husky install",
+    "stylelint-all": "stylelint '**/*.@(sa|sc|c)ss'",
     "stylelint-fix": "stylelint --fix '**/*.@(sa|sc|c)ss'",
     "tsc-full": "tsc --pretty --project ."
   },

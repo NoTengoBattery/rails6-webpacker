@@ -27,7 +27,7 @@ jobs:
       - name: Rubocop report
         env:
           FORCE_COLOR: 1
-        run: bundle exec rubocop --color --fail-fast --parallel
+        run: bundle exec rubocop --color --fail-fast
 
   haml-lint:
     name: HAML Lint
@@ -42,7 +42,7 @@ jobs:
       - name: HAML Lint report
         env:
           FORCE_COLOR: 1
-        run: bundle exec haml-lint --color --fail-fast --parallel
+        run: bundle exec haml-lint --color --fail-fast
 
   eslint:
     name: ESLint
@@ -100,7 +100,7 @@ jobs:
       - name: Stylelint report
         env:
           FORCE_COLOR: 1
-        run: yarn stylelint --color
+        run: yarn stylelint-all --color
 
   typescript:
     name: TypeScript
@@ -129,7 +129,7 @@ jobs:
       - name: TypeScript report
         env:
           FORCE_COLOR: 1
-        run: yarn tsc
+        run: yarn tsc-full
 
   i18n-tasks:
     name: I18n Tasks
