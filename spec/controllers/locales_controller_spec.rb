@@ -36,41 +36,41 @@ RSpec.describe LocalesController, type: :controller do
     end
 
     it "sets a simple locale from the supported list" do
-      patch :site_locale, params: { locale: :es }
+      patch :site_locale, params: {locale: :es}
       expect(local_preference(locale_key)).to eq(:es)
     end
 
     it "sets a composed locale from the supported list" do
-      patch :site_locale, params: { locale: :"en-US" }
+      patch :site_locale, params: {locale: :"en-US"}
       expect(local_preference(locale_key)).to eq(:"en-US")
     end
 
     it "sets a simple locale from a partially supported composed locale" do
-      patch :site_locale, params: { locale: :"es-GT" }
+      patch :site_locale, params: {locale: :"es-GT"}
       expect(local_preference(locale_key)).to eq(:es)
     end
 
     it "sets a default locale from an unsupported locale" do
       request.headers["Accept-Language"] = nil
-      patch :site_locale, params: { locale: :ru }
+      patch :site_locale, params: {locale: :ru}
       expect(local_preference(locale_key)).to eq(I18n.default_locale)
     end
 
     it "sets a browser-prefered simple locale from an unsupported locale" do
       request.headers["Accept-Language"] = "es;q=1.0"
-      patch :site_locale, params: { locale: :ru }
+      patch :site_locale, params: {locale: :ru}
       expect(local_preference(locale_key)).to eq(:es)
     end
 
     it "sets a browser-prefered composed locale from an unsupported locale" do
       request.headers["Accept-Language"] = "es-GT;q=1.0"
-      patch :site_locale, params: { locale: :ru }
+      patch :site_locale, params: {locale: :ru}
       expect(local_preference(locale_key)).to eq(:es)
     end
 
     it "changes the locale after it's set" do
-      patch :site_locale, params: { locale: :"en-US" }
-      patch :site_locale, params: { locale: :es }
+      patch :site_locale, params: {locale: :"en-US"}
+      patch :site_locale, params: {locale: :es}
       expect(local_preference(locale_key)).to eq(:es)
     end
   end

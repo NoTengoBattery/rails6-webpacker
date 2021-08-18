@@ -1,6 +1,10 @@
 ---
 es:
   contact: Contacto
+  errors:
+    messages:
+      format: 'debe tener uno de los siguientes formatos: %{formats}'
+      oversize: tiene que tener un tamaño menor %{size}
   message_here: Por favor, escriba su mensaje en este espacio. Gracias.
   misc:
     http_auth_greeting: Por favor, escriba sus credenciales

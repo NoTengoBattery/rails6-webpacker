@@ -10,3 +10,7 @@ exclude:
 linters:
   LineLength:
     max: 120
+
+  SpaceInsideHashAttributes:
+    enabled: true
+    style: no_space

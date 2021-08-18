@@ -26,7 +26,7 @@ printf "%s\n" "$GIT_FILES" | { while IFS= read -r staged; do
 
   FOR=Rubocop RUBOCOP_ENFORCE=yes run_hook bundle exec rubocop
   FOR=ESLint run_hook yarn eslint
-  FOR=TSC run_hook yarn tsc
+  FOR=TSC run_hook yarn tsc --noEmit
   FOR=HamlLint run_hook bundle exec haml-lint
   FOR=StyleLint run_hook yarn stylelint
 }

@@ -1,6 +1,10 @@
 ---
 en:
   contact: Contact
+  errors:
+    messages:
+      format: 'must be one of the following formats: %{formats}'
+      oversize: must be less than %{size}
   message_here: Please write your message in this space. Thanks.
   misc:
     http_auth_greeting: Please enter your credentials

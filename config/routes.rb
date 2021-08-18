@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   put "/locale", action: :default_locale, controller: :locales, as: :default_locale
 
   domains_router.subdomain :testing do
-    get "/testing_route",  action: :index, controller: :placeholders
+    get "/testing_route", action: :index, controller: :placeholders
   end
 end

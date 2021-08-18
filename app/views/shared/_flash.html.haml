@@ -1,0 +1,6 @@
+- unless flash.empty?
+  .bg-error-500.mt-2.p-2.ring-2.ring-error-800.ring-opacity-75.rounded
+    .text-white
+      %ul
+        - flash.each do |_type, message|
+          %li= message

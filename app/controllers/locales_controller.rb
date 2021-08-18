@@ -1,4 +1,6 @@
 class LocalesController < ApplicationController
+  # skip_before_action :authenticate_user!
+
   def site_locale
     configure_locale(new: locale_params[:locale])
     redirect_back fallback_location: root_path
@@ -11,5 +13,6 @@ class LocalesController < ApplicationController
   end
 
   private
-    def locale_params() = params.permit(:locale)
+
+  def locale_params() = params.permit(:locale)
 end

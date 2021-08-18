@@ -41,19 +41,22 @@ module WebsiteTemplate
     config.active_storage.variant_processor = :vips
 
     # Configure the Redis cache store
-    config.cache_store = :redis_cache_store, { url: ENV["REDIS_CACHE_URL"], namespace: AppConfig::Config.namespace }
+    config.cache_store = :redis_cache_store, {url: ENV["REDIS_CACHE_URL"], namespace: AppConfig::Config.namespace}
 
     # Set the host matcher to avoid "Blocked host" errors
     config.hosts += AppConfig::Config.host_matcher
     config.action_dispatch.tld_length = AppConfig::Config.tld_length
 
     # Action Mailer configuration for generating URLs when sending emails
-    config.action_mailer.default_url_options = { host: AppConfig::Config.host }
-    config.action_mailer.default_url_options[:port] = AppConfig::Config.port  if AppConfig::Config.port
+    config.action_mailer.default_url_options = {host: AppConfig::Config.host}
+    config.action_mailer.default_url_options[:port] = AppConfig::Config.port if AppConfig::Config.port
 
     # Share the cookies among all the domains by default"
     config.session_store :cookie_store, key: AppConfig::Cookie::SESSION_STORE,
                                         tld_length: AppConfig::Config.cookie_tld_length,
                                         domain: :all
+
+    # Use Resque as the default queue adapter for Active Job
+    config.active_job.queue_adapter = :resque
   end
 end
