@@ -242,14 +242,6 @@ jobs:
           FORCE_COLOR: 1
         run: bin/rails db:setup
 
-      # Currently, Capybara supports Chrome and Firefox
-      - name: Use Firefox browser for the test suite
-        if: matrix.browser == 'firefox'
-        uses: browser-actions/setup-firefox@latest
-      - name: Use Chrome browser for the test suite
-        if: matrix.browser == 'chrome'
-        uses: browser-actions/setup-chrome@latest
-
       - name: RSpec test suite report for ${{ matrix.browser }}
         env:
           FORCE_COLOR: 1
