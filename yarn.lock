@@ -991,9 +991,9 @@
   integrity sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==
 
 "@iconify/iconify@^2.0":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@iconify/iconify/-/iconify-2.0.3.tgz#1ae5bc81c2615b4d24ae495e6bdd6b5109f6e1dc"
-  integrity sha512-Ctjre38vIf0PjjU2joj+DheSDFajdLiZ7gNdttjsXPqB9yYrmqOIDe1ce8L8v0qO86kM05hF9lUMriQTlgiSPA==
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@iconify/iconify/-/iconify-2.0.4.tgz#72bff5fe1e7c71a2ac6bd7a2f74f933b3920526c"
+  integrity sha512-ejk4gWp9STQcivh1h5VKyuLpOOWefrC9WcHUW5YQBXqsT0NBpfqei8X4rCXasnNlbJSiK8IvIJZTfKtQ/56JIw==
   dependencies:
     cross-fetch "^3.0.6"
 
