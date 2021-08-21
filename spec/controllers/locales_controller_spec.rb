@@ -21,7 +21,7 @@ RSpec.describe LocalesController, type: :controller do
       expect(local_preference(locale_key)).to eq(I18n.default_locale)
     end
 
-    it "sets the default locale with broser hints" do
+    it "sets the default locale with browser hints" do
       request.headers["Accept-Language"] = "es;q=1.0"
       put :default_locale
       expect(local_preference(locale_key)).to eq(:es)
