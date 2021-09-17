@@ -55,7 +55,7 @@ group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem "web-console", "~> 4.1"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem "spring", "~> 2.1", ">= 2.1.1"
+  gem "spring", "~> 3.0"
   # Rubocop linter gems for linting the source code during development
   gem "rubocop-faker", "~> 1.1", require: false
   gem "rubocop-i18n", "~> 3.0", require: false
