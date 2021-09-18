@@ -963,15 +963,15 @@
   dependencies:
     purgecss "^4.0.3"
 
-"@hotwired/turbo-rails@7.0.0-rc.1":
-  version "7.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/@hotwired/turbo-rails/-/turbo-rails-7.0.0-rc.1.tgz#68cc07b2a1e7d9b29240c525c657722b3f0c3842"
-  integrity sha512-LLOgtHWb/cnz0bXlfJ9khWHapQuCOuUI48yiSVgL3veklvbX1vyQlk/ALn35Z6nHTi7Bf+MHMS9H5W2c/vwKuw==
+"@hotwired/turbo-rails@7.0.0-rc.4":
+  version "7.0.0-rc.4"
+  resolved "https://registry.yarnpkg.com/@hotwired/turbo-rails/-/turbo-rails-7.0.0-rc.4.tgz#647e7f976b1bb645a2902c131c235d7440c28e29"
+  integrity sha512-ibCoMPnJRz/1CTsMywYLotq0zz2G4VZUeMiYSupzjmGFesGSJiCRiC42+iXPK/P1qwqp0WdWxSBRhfXI/wbH0A==
   dependencies:
-    "@hotwired/turbo" "^7.0.0-rc.1"
+    "@hotwired/turbo" "^7.0.0-rc.4"
     "@rails/actioncable" "^6.0.0"
 
-"@hotwired/turbo@^7.0.0-rc.1":
+"@hotwired/turbo@^7.0.0-rc.4":
   version "7.0.0-rc.4"
   resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-7.0.0-rc.4.tgz#d3ab9555544534f5ec649613553e72ff6c7d7122"
   integrity sha512-4qx+6O6mUN+cSN+ZLGCOGc+2MxNrs7cFbmnWD6LIfiHAQyuNiIuB87Y5IAtOo8xj16fOBd2CdU1WRJya4Wkw0A==
