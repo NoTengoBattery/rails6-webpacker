@@ -10,7 +10,7 @@ gem "puma", "~> 5.4"
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem "webpacker", "~> 6.0.0.rc.5"
 # Turbo makes navigating your web application faster.
-gem "turbo-rails", "~> 0.7.14"
+gem "turbo-rails", "~> 1.0.1"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.11", ">= 2.11.2"
 # Use Redis adapter to run Action Cable in production
