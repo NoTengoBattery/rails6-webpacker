@@ -62,7 +62,7 @@ group :development do
   gem "rubocop-i18n", "~> 3.0", require: false
   gem "rubocop-rails_config", "~> 1.7", ">= 1.7.3", require: false
   gem "rubocop-rake", "~> 0.6.0", require: false
-  gem "rubocop-rspec", "~> 2.4", require: false
+  gem "rubocop-rspec", "~> 2.11", require: false
   gem "standard", "~> 1.3", require: false
   # This gem makes internationalization easier
   gem "i18n-tasks", "~> 0.9.34", require: false
