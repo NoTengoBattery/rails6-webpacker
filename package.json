@@ -41,7 +41,7 @@
     "webpack-cli": "^4.8"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.15",
+    "@babel/eslint-parser": "^7.18",
     "@types/rails__actioncable": "^6",
     "@types/rails__activestorage": "^6",
     "@types/rails__ujs": "^6",
