@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.1.0
       - name: Prepare Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.1.0
       - name: Prepare Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.1.0
       - name: Get Node.js version
         uses: nodenv/actions/node-version@v2
         id: nodenv
@@ -78,7 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.1.0
       - name: Get Node.js version
         uses: nodenv/actions/node-version@v2
         id: nodenv
@@ -107,7 +107,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.1.0
       - name: Get Node.js version
         uses: nodenv/actions/node-version@v2
         id: nodenv
@@ -136,7 +136,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.1.0
       - name: Prepare Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -155,7 +155,7 @@ jobs:
       #RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.1.0
       - name: Prepare Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -216,7 +216,7 @@ jobs:
           - 5432:5432
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.1.0
       - name: Prepare Ruby
         uses: ruby/setup-ruby@v1
         with:
