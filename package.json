@@ -25,7 +25,7 @@
     "@rails/ujs": "^6.1",
     "@rails/webpacker": "6.0.0-rc.5",
     "autoprefixer": "^10.3",
-    "css-loader": "^6.2",
+    "css-loader": "^6.7",
     "cssnano": "^5.0",
     "mini-css-extract-plugin": "^2.3",
     "postcss": "^8.3",
