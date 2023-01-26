@@ -33,7 +33,7 @@ gem "resque", "~> 2.1"
 gem "rest-client", "~> 2.1"
 
 # Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", "~> 1.9", require: false
+gem "bootsnap", "~> 1.16", require: false
 
 # Display performance information such as SQL time and flame graphs for each request in your browser.
 # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
